@@ -13,6 +13,6 @@ export default function Content({currentPage, setCurrentPage}){
         <div className={contentStyle}><SignIn/></div>
         )
     } else {
-        return <div className={contentStyle}>No page named {currentPage}</div>
+        return <div className={contentStyle}>No page named {currentPage} </div>
     }
 }
