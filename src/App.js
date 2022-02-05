@@ -1,6 +1,7 @@
+import './css/App.css';
+
 import React, { useState } from 'react';
 
-import './App.css';
 
 import Content from './components/Content';
 import SignIn from './components/SignIn';
@@ -8,8 +9,8 @@ import SignIn from './components/SignIn';
 function App() {
   const [currentPage, setCurrentPage] = useState("cardDesign");
   return (
-    <div className="App w-100 h-100 bg-dark">
-      <Content currentPage={currentPage} setCurrentPage={setCurrentPage} />
+    <div className="App d-flex h-100 bg-dark align-items-center justify-content-center">
+      <Content currentPage={currentPage} setCurrentPage={setCurrentPage}/>
     </div>
   );
 }
