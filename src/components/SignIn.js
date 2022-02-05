@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import { checkPassword, validateEmail } from '../utils/helpers';
 
@@ -74,6 +75,10 @@ function Form() {
                     onChange={handleInputChange}
                     type="password"
                     placeholder="******" />
+
+                <div className="w-100 m-2"></div>
+
+                <small className= "mt-2">Don't have an account? <Link to="/signup">Signup</Link></small> 
 
                 <div className="w-100 m-2"></div>
 
