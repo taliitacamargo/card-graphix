@@ -3,7 +3,7 @@ import React from 'react';
 import SignIn from './SignIn';
 
 export default function Content({currentPage, setCurrentPage}){
-    let contentStyle = "PageContent bg-light w-75 h-75"
+    let contentStyle = "PageContent bg-dark w-75 h-75"
     if(currentPage === "cardDesign"){
         return(
         <div className={contentStyle}>Page Design</div>

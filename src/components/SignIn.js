@@ -64,10 +64,10 @@ function Form() {
                     name="userName"
                     onChange={handleInputChange}
                     type="text"
-                    placeholder="John Doe"/>
+                    placeholder="John Doe" />
 
-                 <div className="w-100 m-2"></div>   
-                    
+                <div className="w-100 m-2"></div>
+
                 <input value={password}
                     name="password"
                     onChange={handleInputChange}
