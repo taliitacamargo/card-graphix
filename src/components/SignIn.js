@@ -24,7 +24,10 @@ function Form() {
     };
     const handleFormSubmit = (e) => {
         e.preventDefault();
+
+
         if (!validateEmail(email) || !userName) {
+            console.log(email)
             setErrorMessage('Email or Username is invalid');
 
             return;
@@ -38,23 +41,48 @@ function Form() {
         setPassword('')
         setEmail('')
         alert(`Welcome ${userName}!`)
+
     };
 
     return (
         <div>
-            <h1>Hello {userName}</h1>
+            <h1>Welcome {userName}</h1>
+            <br className="w-100 m-4"></br>
             <form>
-                <input value= {email} name = "email" onChange = {handleInputChange}
-                type= "text" placeholder = "johndoe@gmail.com"/>
-                <input value = {password} name= "password" onChange={handleInputChange}
-                type="password" placeholder="******" />
-                <button type= "button" onClick= {handleFormSubmit}>Submit</button>
-                </form>
-                {errorMessage && (
-                    <div>
-                        <p>{errorMessage}</p>
-                    </div>
-                )}
+
+                <input
+                    value={email}
+                    name="email"
+                    onChange={handleInputChange}
+                    type="text"
+                    placeholder="john@example.com" />
+
+                <div className="w-100 m-2"></div>
+
+                <input
+                    value={userName}
+                    name="userName"
+                    onChange={handleInputChange}
+                    type="text"
+                    placeholder="John Doe"/>
+
+                 <div className="w-100 m-2"></div>   
+                    
+                <input value={password}
+                    name="password"
+                    onChange={handleInputChange}
+                    type="password"
+                    placeholder="******" />
+
+                <div className="w-100 m-2"></div>
+
+                <button type="button" onClick={handleFormSubmit}>Submit</button>
+            </form>
+            {errorMessage && (
+                <div>
+                    <p className="error-text">{errorMessage}</p>
+                </div>
+            )}
         </div>
     );
 }
