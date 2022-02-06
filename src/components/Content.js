@@ -1,6 +1,6 @@
 import React from 'react';
-
-import SignIn from './SignIn';
+import Login from './Login'
+import SignUp from './SignUp';
 
 export default function Content({currentPage, setCurrentPage}){
     let contentStyle = "PageContent bg-light w-75 h-75"
@@ -8,11 +8,11 @@ export default function Content({currentPage, setCurrentPage}){
         return(
         <div className={contentStyle}>Page Design</div>
         )
-    } else if(currentPage === "login"){
+    } else if(currentPage === "signIn"){
         return(
-        <div className={contentStyle}><SignIn/></div>
+        <div className={contentStyle}><SignUp/></div>
         )
     } else {
-        return <div className={contentStyle}>No page named {currentPage} </div>
+        return <div className={contentStyle}><Login/>{currentPage}</div>
     }
 }
