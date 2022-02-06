@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 // Here we import a helper function that will check if the email is valid
 import { checkPassword, validateEmail } from '../utils/helpers';
 
+// something to push
 function Form() {
   // Create state variables for the fields in the form
   // We are also setting their initial values to an empty string
