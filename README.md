@@ -1,72 +1,23 @@
-# Card-Graphix
+# Decode and Read JSON Web Token (Client-side)
 
-# Getting Started with Create React App
+In this demo, you demonstrate how a token is stored client-side after successfully logging into the application.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Instructions
 
-## Available Scripts
+* Run `npm install` and `npm run seed` to set up the database.
 
-In the project directory, you can run:
+* Open the client-side [package.json](client/package.json) and explain that while we can't sign or verify a token in the client, we can check what information it holds and when it expires with the `jwt-decode` library.
 
-### `npm start`
+* Open [auth.js](client/src/utils/auth.js) and explain the `AuthService` class:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  * When we log into the site, we need to store our access token somewhere so we can retrieve and include it with any request to our server. This suite of functionality helps us achieve that goal.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* Open [App.js](client/src/App.js) and explain the contents:
 
-### `npm test`
+  * We now import the `setContext()` function from Apollo Client and implement it to retrieve the token and include it in the `headers` of any request to our server.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  * We don't have anything server-side yet that will verify this token, but we'll focus on that later.
 
-### `npm run build`
+* Open [Login.js](client/src/pages/Login.js) and explain the page's functionality:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  * When we fill out and submit this form to login, we execute the `login` mutation and receive a token in return, which we immediately store using our `AuthService` class functionality.
