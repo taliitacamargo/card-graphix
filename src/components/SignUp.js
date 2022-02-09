@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom"
+import { Link, Route } from "react-router-dom"
 import { checkPassword, validateEmail } from '../utils/helpers';
 
 function Form() {
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('')
-
     const [errorMessage, setErrorMessage] = useState('');
     // adding something to push 
 
@@ -47,11 +46,10 @@ function Form() {
 
     return (
         <div>
-            <h1>Welcome back {userName}!</h1>
+            <h1>Welcome {userName}!</h1>
 
             <br className="w-100 m-4"></br>
 
-            <small>Login</small>
             
             <form>
 
@@ -81,9 +79,12 @@ function Form() {
 
                 <div className="w-100 m-2"></div>
 
-                <small>Already have account? 
-                    {/* <Link to= "/Login/"></Link> */}
+                <small>Already have account?
+                    <Route path="/signup">
+                    <Link to= "/Login/"></Link>
+                    </Route> 
                     </small> 
+                    
                     <div className="w-100 m-2"></div>
 
                 <button type="button" onClick={handleFormSubmit}>Submit</button>
