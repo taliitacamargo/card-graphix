@@ -1,0 +1,11 @@
+.CardPage{
+    width: 80vw;
+    height: 50vh;
+    display: flex;
+}
+
+.CardView{
+    height: 2in;
+    width: 3.5in;
+    background-color: white;
+}
