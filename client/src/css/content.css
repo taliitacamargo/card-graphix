@@ -7,5 +7,14 @@
 .CardView{
     height: 2in;
     width: 3.5in;
+    position: relative;
     background-color: white;
+}
+
+.CardView div{
+    font-size: 12px;
+}
+
+.NameValue{
+    position: absolute;
 }
