@@ -2,6 +2,9 @@
     width: 80vw;
     height: 50vh;
     display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .CardView{
@@ -12,9 +15,6 @@
 }
 
 .CardView div{
-    font-size: 12px;
-}
-
-.NameValue{
     position: absolute;
+    font-size: 8px;
 }
