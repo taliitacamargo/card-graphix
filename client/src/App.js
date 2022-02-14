@@ -8,10 +8,10 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import Home from './pages/home/Home';
+import Profile from './pages/profile/Profile';
+import Signup from './pages/signup/Signup';
+import Login from './pages/login/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -43,9 +43,9 @@ function App() {
   return (
       <ApolloProvider client={client}>
         <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className="d-flex flex-column align-items-center justify-flex-start min-100-vh">
           <Header />
-          <div className="container">
+          <div className="m-1 d-flex flex-column align-content-center justify-content-center">
             <Route exact path="/">
               <Home />
             </Route>
