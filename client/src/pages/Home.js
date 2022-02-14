@@ -9,7 +9,7 @@ const Home = () => {
   let cardObj = {
     nameField: {
       value: "Isaac Carnes",
-      class: "Title NameValue",
+      class: "NameValue",
       style: {
         left: "1.7in",
         top: "0.1in",
