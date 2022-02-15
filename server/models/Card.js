@@ -12,6 +12,7 @@ const cardSchema = new Schema({
         {
             type: String,
             trim: true,
+                 // component array should hold all cardBuilder info 
         },
     ],
 

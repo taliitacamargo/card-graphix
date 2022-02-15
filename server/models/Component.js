@@ -10,7 +10,7 @@ const componentSchema = new Schema({
     compClass: {
         type: String,
     },
-    value: {
+    compValue: {
         type: String,
     },
     compStyle: [
