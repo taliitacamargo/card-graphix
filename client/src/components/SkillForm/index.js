@@ -2,32 +2,30 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_SKILL } from '../../utils/mutations';
-
 import Auth from '../../utils/auth';
 
 const SkillForm = ({ profileId }) => {
-  const [skill, setSkill] = useState('');
+  // const [skill, setSkill] = useState('');
 
-  const [addSkill, { error }] = useMutation(ADD_SKILL);
+  // const [addSkill, { error }] = useMutation(ADD_SKILL);
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
 
-    try {
-      const data = await addSkill({
-        variables: { profileId, skill },
-      });
+  //   try {
+  //     const data = await addSkill({
+  //       variables: { profileId, skill },
+  //     });
 
-      setSkill('');
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     setSkill('');
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   return (
     <div>
-      <h4>Endorse some more skills below.</h4>
+      {/* <h4>Endorse some more skills below.</h4>
 
       {Auth.loggedIn() ? (
         <form
@@ -59,7 +57,7 @@ const SkillForm = ({ profileId }) => {
           You need to be logged in to endorse skills. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
-      )}
+      )} */}
     </div>
   );
 };
