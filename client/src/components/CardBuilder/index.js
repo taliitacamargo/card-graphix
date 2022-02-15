@@ -1,13 +1,13 @@
 import React from 'react';
 
 const CardBuilder = () => {
-    class Component{
-        constructor(compValue, compClass, compStyle){
-            this.compValue = compValue;
-            this.compClass = compClass;
-            this.compStyle = compStyle;
-        }
+  class Component {
+    constructor(compValue, compClass, compStyle) {
+      this.compValue = compValue;
+      this.compClass = compClass;
+      this.compStyle = compStyle;
     }
+  }
 
     let compArray = [
         new Component("", "Background", JSON.stringify({
@@ -60,15 +60,42 @@ const CardBuilder = () => {
           })),
       ];
 
-      const cardComps = compArray.map((item, i) => <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>{item.compValue}</div>)
-    
-      return (
-        <div className="CardPage bg-light">
-          <div className="CardView">
-              {cardComps}
-          </div>
-        </div>
-      );
+  let cardObj = {
+    phoneNum2Field: {
+      value: "+1 412-222-2222",
+      class: "Phone2Value",
+      style: {
+        right: "0.15in",
+        top: "0.65in",
+      },
+    },
+    emailField: {
+      value: "isaacjoshuadeveloper@gmail.com",
+      class: "EmailValue",
+      style: {
+        right: "0.15in",
+        top: "0.85in",
+      },
+    },
+    websiteField: {
+      value: "isaacjcarnes.github.io/react-portfolio-ij/",
+      class: "WebsiteValue",
+      style: {
+        right: "0.15in",
+        top: "0.95in",
+      },
+    },
+  };
+
+  const cardComps = compArray.map((item, i) => <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>{item.compValue}</div>)
+
+  return (
+    <div className="CardPage bg-light">
+      <div className="CardView">
+        {cardComps}
+      </div>
+    </div>
+  );
 };
 
 export default CardBuilder;
