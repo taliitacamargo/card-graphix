@@ -7,7 +7,12 @@ const CardSchema = new Schema ({
         required: true, 
         trim:true,
     },
-    
-//    [components]
 
-})
+    components: [
+        {
+        type: String,
+        trim: true,
+    },
+],
+
+});
