@@ -87,13 +87,17 @@ const CardBuilder = () => {
     },
   };
 
+  
+      
   const cardComps = compArray.map((item, i) => <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>{item.compValue}</div>)
 
   return (
+    <div className="app">
     <div className="CardPage bg-light">
       <div className="CardView">
         {cardComps}
       </div>
+    </div>
     </div>
   );
 };
