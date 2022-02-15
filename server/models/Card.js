@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const cardSchema = new Schema({
 
@@ -8,41 +9,19 @@ const cardSchema = new Schema({
         trim: true,
     },
 
+    logo: {
+        type: String,
+        required: false,
+        // add an image  field ( call it logo)
+        //  as well  for business card background
+        // we are using cloudinary url for logos
+        // component array should hold all cardBuilder info 
+    },
+
     components: [
         {
-            name: {
-                type: String,
-                required: true,
-                trim: true,
-            },
-            title: {
-                type: String,
-                required: true,
-            },
-            phone: {
-                type: Number,
-                required: true,
-            },
-            address: {
-                type: String, 
-                required: true,
-            },
-            email: {
-                type: String,
-                required: true,
-            },
-            website: {
-                type: String, 
-                required: false,
-            },
-            logo: {
-                type: String, 
-                required: false, 
-            },
-            // add an image  field ( call it logo)
-            //  as well  for business card background
-            // we are using cloudinary url for logos
-            // component array should hold all cardBuilder info 
+            type: Schema.Types.ObjectId,
+            ref: 'Component',
         },
     ],
 
