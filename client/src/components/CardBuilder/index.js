@@ -1,33 +1,35 @@
 import React from 'react';
 
 const CardBuilder = () => {
-    let cardObj = {
-        nameField: {
-          value: "Isaac Carnes",
-          class: "NameValue",
-          style: {
+    class Component{
+        constructor(compValue, compClass, compStyle){
+            this.compValue = compValue;
+            this.compClass = compClass;
+            this.compStyle = compStyle;
+        }
+    }
+    console.log(JSON.stringify({
+        left: "1.7in",
+        top: "0.1in",
+        fontSize: "20px",
+      }));
+    let compArray = [
+        new Component("Isaac Carnes", "NameValue", JSON.stringify({
             left: "1.7in",
             top: "0.1in",
             fontSize: "20px",
-          },
-        },
-        titleField: {
-            value: "FullStack Developer",
-            class: "TitleValue",
-            style: {
-              left: "1.8in",
-              top: "0.3in",
-              fontSize: "11px",
-            },
-          },
-          phoneNum1Field: {
-            value: "+1 412-111-1111",
-            class: "Phone1Value",
-            style: {
-              right: "0.15in",
-              top: "0.55in",
-            },
-          },
+        })),
+        new Component("FullStack Developer", "TitleValue", JSON.stringify({
+            left: "1.8in",
+            top: "0.3in",
+            fontSize: "11px",
+          })),
+        new Component("+1 412-111-1111", "Phone1Value", JSON.stringify({
+            right: "0.15in",
+            top: "0.55in",
+          })),
+      ];
+    let cardObj = {
           phoneNum2Field: {
             value: "+1 412-222-2222",
             class: "Phone2Value",
@@ -53,31 +55,13 @@ const CardBuilder = () => {
             },
           },
       };
+
+      const cardComps = compArray.map((item, i) => <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>{item.compValue}</div>)
     
       return (
         <div className="CardPage bg-light">
           <div className="CardView">
-            <div className={cardObj.nameField.class} style={{...cardObj.nameField.style}}>
-              {cardObj.nameField.value}
-            </div>
-            <div className={cardObj.titleField.class} style={{...cardObj.titleField.style}}>
-              {cardObj.titleField.value}
-            </div>
-            <div className={cardObj.phoneNum1Field.class} style={{...cardObj.phoneNum1Field.style}}>
-              {cardObj.phoneNum1Field.value}
-            </div>
-            <div className={cardObj.phoneNum2Field.class} style={{...cardObj.phoneNum2Field.style}}>
-              {cardObj.phoneNum2Field.value}
-            </div>
-            <div className={cardObj.emailField.class} style={{ ...cardObj.emailField.style }}>
-              {cardObj.emailField.value}
-            </div>
-            <div className={cardObj.emailField.class} style={{ ...cardObj.emailField.style }}>
-              {cardObj.emailField.value}
-            </div>
-            <div className={cardObj.websiteField.class} style={{ ...cardObj.websiteField.style }}>
-              {cardObj.websiteField.value}
-            </div>
+              {cardComps}
           </div>
         </div>
       );
