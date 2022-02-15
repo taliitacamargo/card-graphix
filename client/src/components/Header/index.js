@@ -11,7 +11,7 @@ const Header = () => {
   return (
       <div className="Header flex-column justify-space-between-lg justify-center align-center text-center">
         <Link className="text-dark" to="/">
-          <h1 className="m-0" style={{ fontSize: '3rem' }}>
+          <h1 className="m-0" style={{ fontSize: '3rem', fontFamily: 'montserrat'}}>
             Card Graphix
           </h1>
         </Link>
