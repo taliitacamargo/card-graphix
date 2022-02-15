@@ -10,28 +10,28 @@ const cardSchema = new Schema({
 
     components: [
         {
-            NameValue: {
+            name: {
                 type: String,
                 required: true,
                 trim: true,
             },
-            TitleValue: {
+            title: {
                 type: String,
                 required: true,
             },
-            Phone1Value: {
+            phone: {
                 type: Number,
                 required: true,
             },
-            phoneNum2Field: {
-                type: Number,
-                required: false,
+            address: {
+                type: String, 
+                required: true,
             },
-            emailField: {
+            email: {
                 type: String,
                 required: true,
             },
-            websiteField: {
+            website: {
                 type: String, 
                 required: false,
             },
@@ -41,9 +41,8 @@ const cardSchema = new Schema({
             },
             // add an image  field ( call it logo)
             //  as well  for business card background
-            // we are using claudinary url for logos
+            // we are using cloudinary url for logos
             // component array should hold all cardBuilder info 
-
         },
     ],
 
