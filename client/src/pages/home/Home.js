@@ -1,9 +1,9 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 
-import { QUERY_PROFILES } from "../utils/queries";
+import { QUERY_PROFILES } from "../../utils/queries";
 
-import "../css/content.css";
+import "../home/home.css";
 
 const Home = () => {
   let cardObj = {
