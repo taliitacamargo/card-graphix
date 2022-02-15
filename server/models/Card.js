@@ -1,9 +1,13 @@
 const { Schema, model } = require('mongoose');
 
-const Card = new Schema ({
+const CardSchema = new Schema ({
 
     id: {
         type: String,
-        required: true,   
+        required: true, 
+        trim:true,
+    },
+    
+//    [components]
 
 })
