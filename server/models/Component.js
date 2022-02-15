@@ -1,17 +1,19 @@
 const { Schema, model } = require('mongoose');
 
-const ComponentSchema = new Schema({
+const componentSchema = new Schema({
     id: {
         type: String,
+        required: true,
+        trim: true,
     },
 
-    class: {
+    compClass: {
         type: String,
     },
     value: {
         type: String,
     },
-    style: [
+    compStyle: [
         {
         // make it an array of variables since cards 
         // will not have the same style 
@@ -22,4 +24,8 @@ const ComponentSchema = new Schema({
         },
     ],
 
-})
+});
+
+const Component = model('Component', componentSchema);
+
+module.exports = Component;
