@@ -29,7 +29,7 @@ const Header = () => {
           </>
         )}
       <div className="container">
-        <p>Create Your Perfect Business Card</p>
+        <p className="intro">"Create Your Perfect Business Card"</p>
       </div>
     </div>
 
