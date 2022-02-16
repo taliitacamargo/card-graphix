@@ -60,6 +60,25 @@ const CardBuilder = () => {
           })),
       ];
 
+      const createPreferenceForm = (comp) => {
+        let parsed = JSON.parse(comp.compStyle);
+        for (const property in parsed) {
+          console.log(`${property}: ${parsed[property]}`);
+          //Create form button with property as name and parsed[property] as default value, onChange call changeValue with className, the property name, and the new
+        }
+        return "preferences";
+      };
+
+      const changeValue = (className, property, value) =>{
+        //React dom find by class name, replace property value with new value, or add value if not already in it
+        let target = document.getElementsByClassName(className)[0];
+        console.log(target.style);
+        return null;
+      };
+
+      let preferenceBox = <div style={{display: "flex", flexDirection: "row"}}>{createPreferenceForm(compArray[2])}</div>
+
+      changeValue("NameValue", "", "");
       const cardComps = compArray.map((item, i) => <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>{item.compValue}</div>)
     
       return (
