@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 const CardBuilder = () => {
     class Component{
@@ -8,7 +8,7 @@ const CardBuilder = () => {
             this.compStyle = compStyle;
         }
     }
-
+    
     let compArray = [
         new Component("", "Background", JSON.stringify({
             height: "100%",
@@ -61,26 +61,44 @@ const CardBuilder = () => {
       ];
 
       const createPreferenceForm = (comp) => {
-        let parsed = JSON.parse(comp.compStyle);
+        /*let parsed = JSON.parse(comp.compStyle);
+        let propValue = [];
         for (const property in parsed) {
-          console.log(`${property}: ${parsed[property]}`);
+          propValue.concat(<tr><th className='small text-muted pr-2' scope='row'>{property}</th>, <td>{parsed[property]}</td></tr>)
           //Create form button with property as name and parsed[property] as default value, onChange call changeValue with className, the property name, and the new
         }
-        return "preferences";
+        
+        return <table>{propValue}</table>;*/
+        return '';
       };
 
       const changeValue = (className, property, value) =>{
+        let propName = ""
+        switch(property){
+          case "fontSize":
+            propName = 'font-size';
+            break;
+          default:
+            propName = property
+        }
+        
         //React dom find by class name, replace property value with new value, or add value if not already in it
-        let target = document.getElementsByClassName(className)[0];
-        console.log(target.style);
-        return null;
+        let target = document.getElementsByClassName(className)[0].style;
+        if(target){
+          target.setProperty(property, value);
+          return true; //Success
+        }
+        return false; //False
       };
 
       let preferenceBox = <div style={{display: "flex", flexDirection: "row"}}>{createPreferenceForm(compArray[2])}</div>
 
-      changeValue("NameValue", "", "");
       const cardComps = compArray.map((item, i) => <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>{item.compValue}</div>)
     
+      useEffect(() => {
+        changeValue("NameValue", "fontSize", "25px");
+      }, []);
+
       return (
         <div className="CardPage bg-light">
           <div className="CardView">
