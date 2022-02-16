@@ -1,0 +1,19 @@
+.wrapper {
+    height: 80vh;
+
+}
+
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}

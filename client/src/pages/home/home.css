@@ -1,4 +1,6 @@
-@import "../../global.css";
+.app {
+    height: 70vh;
+}
 
 .CardPage{
     width: 80vw;

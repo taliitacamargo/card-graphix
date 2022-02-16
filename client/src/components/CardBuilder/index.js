@@ -142,9 +142,13 @@ const CardBuilder = () => {
   }, []);
 
   return (
-    <div className="CardPage bg-light">
-      {preferenceBox}
-      <div className="CardView">{cardComps}</div>
+    <div className="app">
+      <div className="CardPage bg-light">
+        {preferenceBox}
+        <div className="CardView">
+          {cardComps}
+        </div>
+      </div>
     </div>
   );
 };
