@@ -13,6 +13,7 @@ import Home from './pages/home/Home';
 import Profile from './pages/profile/Profile';
 import Signup from './pages/signup/Signup';
 import Login from './pages/login/Login';
+import ContactUs from './pages/contact-us/ContactUs';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -59,6 +60,9 @@ function App() {
             </Route>
             <Route exact path="/profiles/:profileId">
               <Profile />
+            </Route>
+            <Route exact path="/contact-us">
+              <ContactUs />
             </Route>
           </div>
           <Footer />
