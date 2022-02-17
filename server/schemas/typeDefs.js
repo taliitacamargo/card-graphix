@@ -6,6 +6,21 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
+    cards: [Card]
+  }
+
+  type Card {
+    _id: ID
+    logo: String
+    components: [Component]
+    profileId: [Profile]
+  }
+
+  type Component {
+    _id: ID
+    compClass: String
+    compValue: String
+    compStyle: String
   }
 
   type Auth {
@@ -16,13 +31,18 @@ const typeDefs = gql`
   type Query {
     profiles: [Profile]!
     profile(profileId: ID!): Profile
+    cards(name: String) : [Card]
+    card(cardId: ID!) : Card
+    me: Profile
   }
 
   type Mutation {
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-
     removeProfile(profileId: ID!): Profile
+    createCard(cardId: ID!): Card
+    removeCard(cardId: ID!): Card
+    updateCard(cardId: ID!): Card
   }
 `;
 

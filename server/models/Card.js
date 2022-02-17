@@ -11,10 +11,6 @@ const cardSchema = new Schema({
     logo: {
         type: String,
         required: false,
-        // add an image  field ( call it logo)
-        //  as well  for business card background
-        // we are using cloudinary url for logos
-        // component array should hold all cardBuilder info 
     },
 
     components: [
@@ -23,6 +19,14 @@ const cardSchema = new Schema({
             ref: 'Component',
         },
     ],
+
+    ProfileId: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Profile',
+        }
+    ]
+
 
 });
 
