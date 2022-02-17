@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PrefrencesForm = ({components}) => {
+const PreferencesForm = ({components}) => {
   const createPreferenceForm = (comp) => {
     let parsed = JSON.parse(comp.compStyle);
     for (const property in parsed) {
@@ -24,4 +24,4 @@ const PrefrencesForm = ({components}) => {
   return ( {preferenceBox} );
 };
 
-export default PrefrencesForm;
+export default PreferencesForm;

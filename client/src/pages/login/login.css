@@ -1,0 +1,27 @@
+.login-container {
+    background-color: #F1F1E6;
+    border-radius: 5%;
+
+}
+
+
+.card {
+    border-color: darkgrey;
+    border: none;
+    min-width: 340px;
+    min-height: 330px;
+    padding: 30px;
+   
+}
+
+.title {
+    text-align: center;
+    font-size: 20px;
+}
+
+.button {
+    outline: none;
+    display: flex;
+    justify-content: center;
+}
+
