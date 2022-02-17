@@ -1,0 +1,59 @@
+.wrapper {
+    height: 70vh;
+    
+
+}
+
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-top: 50px;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    margin-bottom: 3.5rem;
+ 
+}
+
+.step1  {
+    margin-top: 4rem;
+    padding: 10px;
+    background-color: #fa9d5b;
+    border-radius: 50%;
+}
+.step2  {
+    margin-top: 4rem;
+    padding: 10px;
+    background-color: #fa9d5b;
+    border-radius: 50%;
+}
+.step3  {
+    margin-top: 4rem;
+    padding: 10px;
+    background-color: #fa9d5b;
+    border-radius: 50%;
+}
+.steps {
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+.numbered-step-num {
+    margin-top: 0;
+    padding: 0 0 0.2rem 0;
+    font-size: 50px;
+    text-align: center;
+    color: #FFF;
+}
+
+p {
+    color: #FFF;
+}
