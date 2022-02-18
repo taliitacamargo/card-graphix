@@ -49,7 +49,7 @@ const Login = (props) => {
             
               <form onSubmit={handleFormSubmit}>
                 <input
-                  className="form-input"
+                  className="input1"
                   placeholder="Your email"
                   name="email"
                   type="email"
@@ -57,7 +57,7 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="input2"
                   placeholder="******"
                   name="password"
                   type="password"
