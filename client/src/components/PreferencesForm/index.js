@@ -1,27 +1,37 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
-const PrefrencesForm = ({components}) => {
-  const createPreferenceForm = (comp) => {
-    let parsed = JSON.parse(comp.compStyle);
-    for (const property in parsed) {
-      console.log(`${property}: ${parsed[property]}`);
-      //Create form button with property as name and parsed[property] as default value, onChange call changeValue with className, the property name, and the new value
+const PrefrencesForm = ({compClass, compProp, compValue}) => {
+
+  const changeValue = (className, property, e) => {
+    e.preventDefault();
+    let propName = "";
+    switch (property) {
+      case "fontSize":
+        propName = "font-size";
+        break;
+      default:
+        propName = property;
     }
-    return "preferences";
-  };
 
-  const changeValue = (className, property, value) => {
     //React dom find by class name, replace property value with new value, or add value if not already in it
-    return null;
+    let target = document.getElementsByClassName(className)[0].style;
+    if (target) {
+      target.setProperty(property, e.target.value);
+      return true; //Success
+    }
+    return false; //False
   };
 
-  let preferenceBox = 
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      {createPreferenceForm(components[2])}
-    </div>
-  ;
-
-  return ( {preferenceBox} );
+  return(
+    <form>
+      <label>{compProp}</label>
+      <input 
+      type="text"
+      value={compValue}
+      onChange={(e) => changeValue(compClass, compProp, e)}
+      />
+    </form>
+  )
 };
 
 export default PrefrencesForm;

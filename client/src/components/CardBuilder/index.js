@@ -1,6 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+import PreferencesForm from "../PreferencesForm";
 
 const CardBuilder = () => {
+  const [selectedComp, setSelectedComp] = useState(2);
+  const [currentProps, setCurrentProps] = useState("");
+
   class Component {
     constructor(compValue, compClass, compStyle) {
       this.compValue = compValue;
@@ -100,36 +105,26 @@ const CardBuilder = () => {
     ),
   ];
 
-  const createPreferenceForm = (comp) => {
+  const createPreferenceForm = (comp) => { //Needs to return objects and needs to not call multiple times
     let parsed = JSON.parse(comp.compStyle);
+    let propForms = [[comp.compClass, "inner-text", comp.compValue]];
+    //console.log("prop " + currentProps);
+    //propForms.concat(<PreferencesForm {...JSON.parse(currentProps)[0]} />);
+    
+    let i = 1;
     for (const property in parsed) {
-      console.log(property + " " + parsed[property]);
+      //setCurrentProps(currentProps => JSON.stringify([...JSON.parse(currentProps), [comp.compClass, property, parsed[property]]]));
+      propForms.push([comp.compClass, property, parsed[property]]);
+      //propForms.concat(<PreferencesForm {...JSON.parse(currentProps)[i]} />);
+      i++
     }
 
-    return "";
+    //for (const )
+    setCurrentProps(JSON.stringify(propForms));
+    console.log(propForms);
+    return propForms;
+    //return "";
   };
-
-  const changeValue = (className, property, value) => {
-    let propName = "";
-    switch (property) {
-      case "fontSize":
-        propName = "font-size";
-        break;
-      default:
-        propName = property;
-    }
-
-    //React dom find by class name, replace property value with new value, or add value if not already in it
-    let target = document.getElementsByClassName(className)[0].style;
-    if (target) {
-      target.setProperty(property, value);
-      return true; //Success
-    }
-    return false; //False
-  };
-
-  let preferenceBox = createPreferenceForm(compArray[2]);
-  console.log(preferenceBox);
 
   const cardComps = compArray.map((item, i) => (
     <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>
@@ -138,13 +133,20 @@ const CardBuilder = () => {
   ));
 
   useEffect(() => {
-    changeValue("NameValue", "fontSize", "25px");
-  }, []);
+    preferences = createPreferenceForm(compArray[selectedComp]);
+  }, [selectedComp]);
 
+  useEffect(() => {
+    console.log(currentProps);
+  }, [currentProps]);
+
+let preferences = [];
   return (
     <div className="app">
       <div className="CardPage bg-light">
-        {preferenceBox}
+        <div>
+        {preferences}
+        </div>
         <div className="CardView">
           {cardComps}
         </div>
