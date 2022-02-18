@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import PreferencesForm from "../PreferencesForm";
 
+import './card.css';
+
 const CardBuilder = () => {
   const [selectedComp, setSelectedComp] = useState(2);
-  const [currentProps, setCurrentProps] = useState("");
+  const [currentProps, setCurrentProps] = useState([]);
 
   class Component {
     constructor(compValue, compClass, compStyle) {
@@ -107,20 +109,18 @@ const CardBuilder = () => {
 
   const createPreferenceForm = (comp) => { //Needs to return objects and needs to not call multiple times
     let parsed = JSON.parse(comp.compStyle);
-    let propForms = [[comp.compClass, "inner-text", comp.compValue]];
+    let propForms = [{compClass: comp.compClass, compProp: "inner-text", compValue: comp.compValue}];
     //console.log("prop " + currentProps);
     //propForms.concat(<PreferencesForm {...JSON.parse(currentProps)[0]} />);
     
-    let i = 1;
     for (const property in parsed) {
       //setCurrentProps(currentProps => JSON.stringify([...JSON.parse(currentProps), [comp.compClass, property, parsed[property]]]));
-      propForms.push([comp.compClass, property, parsed[property]]);
+      propForms.push({compClass: comp.compClass, compProp: property, compValue: parsed[property]}        );
       //propForms.concat(<PreferencesForm {...JSON.parse(currentProps)[i]} />);
-      i++
     }
 
     //for (const )
-    setCurrentProps(JSON.stringify(propForms));
+    setCurrentProps(propForms);
     console.log(propForms);
     return propForms;
     //return "";
@@ -132,23 +132,27 @@ const CardBuilder = () => {
     </div>
   ));
 
+  const preferences = currentProps.map((item, i) => (
+    <PreferencesForm key={i} {...item} />
+  ));
+
   useEffect(() => {
-    preferences = createPreferenceForm(compArray[selectedComp]);
+    let propArray = createPreferenceForm(compArray[selectedComp]);
+   // preferences = propArray.map((item, i) => <PreferencesForm />)
   }, [selectedComp]);
 
   useEffect(() => {
     console.log(currentProps);
   }, [currentProps]);
 
-let preferences = [];
   return (
     <div className="app">
-      <div className="CardPage bg-light">
-        <div>
-        {preferences}
-        </div>
-        <div className="CardView">
+      <div className="CardPage">
+        <div className="CardView shadow-lg">
           {cardComps}
+        </div>
+        <div className="PreferencesForm">
+          {preferences}
         </div>
       </div>
     </div>

@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
+
 
 const PrefrencesForm = ({compClass, compProp, compValue}) => {
-
+  const [currentVal, setCurrentVal] = useState(compValue);
   const changeValue = (className, property, e) => {
     e.preventDefault();
+    setCurrentVal(e.target.value)
+    console.log(className + " " + property + " " + e.target.value);
     let propName = "";
     switch (property) {
       case "fontSize":
@@ -23,11 +27,11 @@ const PrefrencesForm = ({compClass, compProp, compValue}) => {
   };
 
   return(
-    <form>
-      <label>{compProp}</label>
+    <form className='d-flex flex-column' onSubmit={e => e.preventDefault()}>
+      <label className='bg-secondary'>{compProp}</label>
       <input 
       type="text"
-      value={compValue}
+      defaultValue={currentVal}
       onChange={(e) => changeValue(compClass, compProp, e)}
       />
     </form>
