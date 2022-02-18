@@ -25,3 +25,18 @@
     justify-content: center;
 }
 
+.input1 {
+    border: none;
+    outline: none;
+    margin: 0 0 20px;
+    height: 50px;
+  
+}
+
+.input2 {
+    border: none;
+    outline: none;
+    margin: 0 0 5rem;
+    height: 50px;
+}
+
