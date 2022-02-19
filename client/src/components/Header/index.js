@@ -14,9 +14,11 @@ const Header = () => {
         <h1>Card Graphix</h1>
       </Link>
         {Auth.loggedIn() ? (
+          <div className="container-2">
           <button className="logout" onClick={logout}>
             Logout
           </button>
+          </div>
         ) : (
           <><div className="container-2">
             <Link className="login section" to="/login">

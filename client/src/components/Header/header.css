@@ -6,6 +6,7 @@ h1 {
     cursor: pointer;
     margin-left: 25px;
     margin-top: 20px;
+    font-variant: small-caps;
     
 }
 
@@ -37,11 +38,25 @@ h1 {
 .section {
    margin: 0 10px;
    color: black;
-   font-weight: 300;
+   font-weight: 400;
 
 }
 
 .section:hover {
     color:rgb(5, 91, 91);
+}
+
+.logout {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: 400;
+    
+}
+
+.logout:hover {
+    color: rgb(5, 91, 91);
+
 }
 
