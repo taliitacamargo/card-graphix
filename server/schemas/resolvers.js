@@ -12,11 +12,13 @@ const resolvers = {
       return Profile.findOne({ _id: profileId });
     },
     // Talita's resolvers' (find function) edits start here
+    // if you want all cards related to a user, use ProfileId
+    // if you want to find all the cards, the reference is not important
     cards: async (parent, { profileId }) => {
       const params = profileId ? { profileId } : {};
       return Card.find(params).sort({ createdAt: -1 });
     },
-    card: async (parent, { CardId }) => {
+    card: async (parent, { cardId }) => {
       return Card.findOne({ _id: cardId });
     },
     me: async (parent, args, context) => {

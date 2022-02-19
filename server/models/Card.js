@@ -2,11 +2,11 @@ const { Schema, model } = require('mongoose');
 
 const cardSchema = new Schema({
 
-    id: {
-        type: String,
-        required: true,
-        trim: true,
-    },
+    // id: {
+    //     type: String,
+    //     required: true,
+    //     trim: true,
+    // },
 
     logo: {
         type: String,
