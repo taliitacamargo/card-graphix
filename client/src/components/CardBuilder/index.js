@@ -5,7 +5,8 @@ import PreferencesForm from "../PreferencesForm";
 import './card.css';
 
 const CardBuilder = () => {
-  const [selectedComp, setSelectedComp] = useState(2);
+  const [selectedComp, setSelectedComp] = useState(3);
+  const [compName, setCompName] = useState("Please Select A Coponent");
   const [currentProps, setCurrentProps] = useState([]);
 
   class Component {
@@ -109,21 +110,19 @@ const CardBuilder = () => {
 
   const createPreferenceForm = (comp) => { //Needs to return objects and needs to not call multiple times
     let parsed = JSON.parse(comp.compStyle);
-    let propForms = [{compClass: comp.compClass, compProp: "inner-text", compValue: comp.compValue}];
-    //console.log("prop " + currentProps);
-    //propForms.concat(<PreferencesForm {...JSON.parse(currentProps)[0]} />);
-    
-    for (const property in parsed) {
-      //setCurrentProps(currentProps => JSON.stringify([...JSON.parse(currentProps), [comp.compClass, property, parsed[property]]]));
-      propForms.push({compClass: comp.compClass, compProp: property, compValue: parsed[property]}        );
-      //propForms.concat(<PreferencesForm {...JSON.parse(currentProps)[i]} />);
+    let propForms = [];
+    if(comp.compClass !== "Background" && comp.compClass !== "Logo"){ //Doesnt include textContent for background and logo
+      propForms.push({compClass: comp.compClass, compProp: "textContent", compValue: comp.compValue})
     }
 
-    //for (const )
+    for (const property in parsed) {
+      propForms.push({compClass: comp.compClass, compProp: property, compValue: parsed[property]}        );
+    }
+
     setCurrentProps(propForms);
+    setCompName(comp.compClass);
     console.log(propForms);
     return propForms;
-    //return "";
   };
 
   const cardComps = compArray.map((item, i) => (
@@ -136,9 +135,8 @@ const CardBuilder = () => {
     <PreferencesForm key={i} {...item} />
   ));
 
-  useEffect(() => {
-    let propArray = createPreferenceForm(compArray[selectedComp]);
-   // preferences = propArray.map((item, i) => <PreferencesForm />)
+  useEffect(() => { //When selectedComp is updated, make preference form
+    createPreferenceForm(compArray[selectedComp]);
   }, [selectedComp]);
 
   useEffect(() => {
@@ -148,10 +146,11 @@ const CardBuilder = () => {
   return (
     <div className="app">
       <div className="CardPage">
-        <div className="CardView shadow-lg">
+        <div className="CardView">
           {cardComps}
         </div>
         <div className="PreferencesForm">
+          <div>{compName}</div>
           {preferences}
         </div>
       </div>

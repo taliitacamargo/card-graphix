@@ -7,7 +7,6 @@ const PrefrencesForm = ({compClass, compProp, compValue}) => {
   const changeValue = (className, property, e) => {
     e.preventDefault();
     setCurrentVal(e.target.value)
-    console.log(className + " " + property + " " + e.target.value);
     let propName = "";
     switch (property) {
       case "fontSize":
@@ -18,9 +17,15 @@ const PrefrencesForm = ({compClass, compProp, compValue}) => {
     }
 
     //React dom find by class name, replace property value with new value, or add value if not already in it
-    let target = document.getElementsByClassName(className)[0].style;
-    if (target) {
-      target.setProperty(property, e.target.value);
+    let target = document.getElementsByClassName(className)[0];
+    if(target && propName === "textContent"){
+      target.textContent = e.target.value;
+      return true;
+    } else if(target && propName === "font-size"){
+      target.style.fontSize = e.target.value;
+      return true;
+    } else if (target) {
+      target.style.setProperty(property, e.target.value);
       return true; //Success
     }
     return false; //False
