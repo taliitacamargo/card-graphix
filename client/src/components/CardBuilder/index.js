@@ -5,8 +5,8 @@ import PreferencesForm from "../PreferencesForm";
 import './card.css';
 
 const CardBuilder = () => {
-  const [selectedComp, setSelectedComp] = useState(3);
-  const [compName, setCompName] = useState("Please Select A Coponent");
+  const [selectedComp, setSelectedComp] = useState(0);
+  const [compName, setCompName] = useState("Please Select A Component");
   const [currentProps, setCurrentProps] = useState([]);
 
   class Component {
@@ -116,7 +116,7 @@ const CardBuilder = () => {
     }
 
     for (const property in parsed) {
-      propForms.push({compClass: comp.compClass, compProp: property, compValue: parsed[property]}        );
+      propForms.push({compClass: comp.compClass, compProp: property, compValue: parsed[property]});
     }
 
     setCurrentProps(propForms);
@@ -125,16 +125,32 @@ const CardBuilder = () => {
     return propForms;
   };
 
-  const cardComps = compArray.map((item, i) => (
-    <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>
+  const CreateCardComp = (item, i) => {
+    if(item.compClass === "Logo"){
+      return <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>
+      <img alt="logo"></img>
+      </div>
+    } else {
+    return <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>
       {item.compValue}
     </div>
+    }
+  };
+  const cardComps = compArray.map((item, i) => (
+    CreateCardComp(item, i)
   ));
 
   const preferences = currentProps.map((item, i) => (
     <PreferencesForm key={i} {...item} />
   ));
-
+  
+  const componentButtons = compArray.map((item, i) => (
+    <button key={i} onClick={(e) => {
+      e.preventDefault();
+      setSelectedComp(i)
+    }}>{item.compClass}</button>
+  ));
+  
   useEffect(() => { //When selectedComp is updated, make preference form
     createPreferenceForm(compArray[selectedComp]);
   }, [selectedComp]);
@@ -148,6 +164,9 @@ const CardBuilder = () => {
       <div className="CardPage">
         <div className="CardView">
           {cardComps}
+        </div>
+        <div className="ComponentButtons">
+          {componentButtons}
         </div>
         <div className="PreferencesForm">
           <div>{compName}</div>

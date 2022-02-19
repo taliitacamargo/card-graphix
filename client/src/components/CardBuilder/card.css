@@ -33,6 +33,12 @@
     margin: 1%;
 }
 
+.ComponentButtons{
+    position: absolute;
+    display:grid;
+    left: 10vw;
+}
+
 @keyframes shadowCircle {
     0% {box-shadow: 1px 1px;}
     25% {box-shadow: 1px -1px;}

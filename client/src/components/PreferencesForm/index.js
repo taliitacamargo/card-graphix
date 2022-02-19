@@ -2,24 +2,20 @@ import React, {useState} from 'react';
 
 const PreferencesForm = ({compClass, compProp, compValue}) => {
   const [currentVal, setCurrentVal] = useState(compValue);
+  
   const changeValue = (className, property, e) => {
     e.preventDefault();
     setCurrentVal(e.target.value)
-    let propName = "";
-    switch (property) {
-      case "fontSize":
-        propName = "font-size";
-        break;
-      default:
-        propName = property;
-    }
 
     //React dom find by class name, replace property value with new value, or add value if not already in it
     let target = document.getElementsByClassName(className)[0];
-    if(target && propName === "textContent"){
+    if(target && compProp === "textContent"){
       target.textContent = e.target.value;
       return true;
-    } else if(target && propName === "font-size"){
+    } if(target && compProp === "backgroundColor"){
+      target.style.backgroundColor = e.target.value;
+      return true;
+    } else if(target && compProp === "fontSize"){
       target.style.fontSize = e.target.value;
       return true;
     } else if (target) {
