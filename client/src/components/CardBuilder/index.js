@@ -4,111 +4,19 @@ import PreferencesForm from "../PreferencesForm";
 
 import './card.css';
 
+import {Component, compArray} from "../../utils/cardArray";
+
 const CardBuilder = () => {
+  const [selectedLayout, setSelectedLayout] = useState(1);
   const [selectedComp, setSelectedComp] = useState(0);
-  const [compName, setCompName] = useState("Please Select A Component");
+  const [compName, setCompName] = useState("Layouts");
   const [currentProps, setCurrentProps] = useState([]);
 
-  class Component {
-    constructor(compValue, compClass, compStyle) {
-      this.compValue = compValue;
-      this.compClass = compClass;
-      this.compStyle = compStyle;
-    }
-  }
-
-  let compArray = [
-    new Component(
-      "",
-      "Background",
-      JSON.stringify({
-        height: "100%",
-        width: "45%",
-        backgroundColor: "black",
-        left: "0in",
-        top: "0in",
-      })
-    ),
-    new Component(
-      "",
-      "Logo",
-      JSON.stringify({
-        height: "1in",
-        width: "1in",
-        backgroundColor: "",
-        left: "0.3in",
-        top: "0.5in",
-      })
-    ),
-    new Component(
-      "Mac Jones",
-      "NameValue",
-      JSON.stringify({
-        left: "1.8in",
-        top: "0.1in",
-        fontSize: "20px",
-      })
-    ),
-    new Component(
-      "FullStack Developer",
-      "TitleValue",
-      JSON.stringify({
-        left: "1.8in",
-        top: "0.3in",
-        fontSize: "11px",
-      })
-    ),
-    new Component(
-      "+1 412-111-1111",
-      "Phone1Value",
-      JSON.stringify({
-        right: "0.15in",
-        top: "0.65in",
-      })
-    ),
-    new Component(
-      "+1 412-222-2222",
-      "Phone2Value",
-      JSON.stringify({
-        right: "0.15in",
-        top: "0.75in",
-      })
-    ),
-    new Component(
-      "user56@hotmail.com",
-      "EmailValue",
-      JSON.stringify({
-        right: "0.15in",
-        top: "1.05in",
-      })
-    ),
-    new Component(
-      "user56.github.io/MyPortfolio/",
-      "WebsiteValue",
-      JSON.stringify({
-        right: "0.15in",
-        top: "1.15in",
-      })
-    ),
-    new Component(
-      "83 Park Place",
-      "Address1Value",
-      JSON.stringify({
-        right: "0.15in",
-        top: "1.45in",
-      })
-    ),
-    new Component(
-      "22 Atlantic Avenue",
-      "Address2Value",
-      JSON.stringify({
-        right: "0.15in",
-        top: "1.55in",
-      })
-    ),
-  ];
 
   const createPreferenceForm = (comp) => { //Needs to return objects and needs to not call multiple times
+    if(selectedLayout === 0){
+      return <></>;
+    }
     let parsed = JSON.parse(comp.compStyle);
     let propForms = [];
     if(comp.compClass !== "Background" && comp.compClass !== "Logo"){ //Doesnt include textContent for background and logo
@@ -136,24 +44,32 @@ const CardBuilder = () => {
     </div>
     }
   };
-  const cardComps = compArray.map((item, i) => (
+
+  const cardComps = compArray[selectedLayout].map((item, i) => ( //Fill card with component from compArray[layout]
     CreateCardComp(item, i)
   ));
 
   const preferences = currentProps.map((item, i) => (
     <PreferencesForm key={i} {...item} />
   ));
-  
-  const componentButtons = compArray.map((item, i) => (
-    <button key={i} onClick={(e) => {
+
+  const BuildCompButton = (item, i) => {
+    if(selectedLayout === 0){
+      return <></>;
+    }
+     return <button key={i} onClick={(e) => {
       e.preventDefault();
       setSelectedComp(i)
     }}>{item.compClass}</button>
+  }
+  
+  const componentButtons = compArray[selectedLayout].map((item, i) => (
+    BuildCompButton(item, i)
   ));
   
   useEffect(() => { //When selectedComp is updated, make preference form
-    createPreferenceForm(compArray[selectedComp]);
-  }, [selectedComp]);
+    createPreferenceForm(compArray[selectedLayout][selectedComp]);
+  }, [selectedLayout, selectedComp]);
 
   useEffect(() => {
     console.log(currentProps);
