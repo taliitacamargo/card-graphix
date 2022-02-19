@@ -18,6 +18,13 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  cardId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Card',
+      maxlength: 3,
+    },
+  ],
 });
 
 // set up pre-save middleware to create password
