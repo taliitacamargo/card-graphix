@@ -1,24 +1,3 @@
 .app {
     height: 60vh;
 }
-
-.CardPage{
-    width: 80vw;
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-}
-
-.CardView{
-    height: 2in;
-    width: 3.5in;
-    position: relative;
-    background-color: white;
-}
-
-.CardView div{
-    position: absolute;
-    font-size: 8px;
-}
