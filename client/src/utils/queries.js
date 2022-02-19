@@ -17,3 +17,23 @@ export const QUERY_SINGLE_PROFILE = gql`
     }
   }
 `;
+
+export const GET_ME = gql`
+{
+   me {
+    _id
+    name
+    email
+    cards {
+        cardId
+        logo
+        components {
+            _id
+            compClass
+            compValue
+            compStyle
+        }
+      }
+    } 
+}
+`;
