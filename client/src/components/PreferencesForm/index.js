@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
 
-
-const PrefrencesForm = ({compClass, compProp, compValue}) => {
+const PreferencesForm = ({compClass, compProp, compValue}) => {
   const [currentVal, setCurrentVal] = useState(compValue);
   const changeValue = (className, property, e) => {
     e.preventDefault();
@@ -43,4 +41,4 @@ const PrefrencesForm = ({compClass, compProp, compValue}) => {
   )
 };
 
-export default PrefrencesForm;
+export default PreferencesForm;

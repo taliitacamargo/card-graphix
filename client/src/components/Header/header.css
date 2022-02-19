@@ -1,31 +1,62 @@
+
 h1 {
-    font-weight: normal;
-    font-size: 25px;
-    padding: 13px;
-    color: black;
+    font-weight: 500;
+    font-size: 24px;
+    color:black;
     cursor: pointer;
-   
+    margin-left: 25px;
+    margin-top: 20px;
+    font-variant: small-caps;
+    
+}
+
+.logo:hover {
+    color: white;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 30px;
    
 }
 
-p {
+.intro {
     font-size: 18px;
+    color: black;
 }
 
 .container-2 {
     display: flex;
     justify-content: flex-end;
     margin-right: 20px;
-   
+
 
 }
 
 .section {
    margin: 0 10px;
+   color: black;
+   font-weight: 400;
+
 }
+
+.section:hover {
+    color:rgb(5, 91, 91);
+}
+
+.logout {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: 400;
+    
+}
+
+.logout:hover {
+    color: rgb(5, 91, 91);
+
+}
+
