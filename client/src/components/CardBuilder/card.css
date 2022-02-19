@@ -1,0 +1,57 @@
+.CardPage{
+    width: 80vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.CardView{
+    height: 2in;
+    width: 3.5in;
+    position: relative;
+    background-color: white;
+    border: 1px black;
+    border-style: solid;
+    box-shadow: 1px 1px;
+    animation-name: shadowCircle;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.CardView div{
+    position: absolute;
+    font-size: 8px;
+}
+
+.PreferencesForm{
+    position: relative;
+    background-color: lightgrey;
+    padding: 1%;
+    margin: 1%;
+}
+
+@keyframes shadowCircle {
+    0% {box-shadow: 1px 1px;}
+    25% {box-shadow: 1px -1px;}
+    50% {box-shadow: -1px -1px;}
+    75% {box-shadow: -1px 1px;}
+}
+
+@media only screen and (min-width: 750px) {
+    .CardPage{
+        flex-direction: row;
+    }
+
+    .CardView{
+        position: absolute;
+    }
+
+    .PreferencesForm{
+        position: absolute;
+        width: 18vw;
+        right: 10vw;
+    }
+  }
