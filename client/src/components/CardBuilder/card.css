@@ -33,6 +33,11 @@
     margin: 1%;
 }
 
+.PreferencesForm form{
+    display: flex;
+    flex-direction: column;
+}
+
 .ComponentButtons{
     position: absolute;
     display:grid;

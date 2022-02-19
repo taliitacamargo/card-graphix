@@ -29,7 +29,6 @@ const CardBuilder = () => {
 
     setCurrentProps(propForms);
     setCompName(comp.compClass);
-    console.log(propForms);
     return propForms;
   };
 
@@ -49,8 +48,14 @@ const CardBuilder = () => {
     CreateCardComp(item, i)
   ));
 
+  const BuildPreferences = (item, i) => {
+    console.log(i);
+    let tempObj = { compIndex: i, ...item};
+    return <PreferencesForm key={i} {...tempObj} />
+  }
+
   const preferences = currentProps.map((item, i) => (
-    <PreferencesForm key={i} {...item} />
+    BuildPreferences(item, i)
   ));
 
   const BuildCompButton = (item, i) => {

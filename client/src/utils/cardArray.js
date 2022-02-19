@@ -36,9 +36,9 @@ let compArray = [
       JSON.stringify({
         height: "1in",
         width: "1in",
-        backgroundColor: "",
         left: "5.5%",
         top: "25%",
+        backgroundColor: "",
       })
     ),
     new Component(
@@ -109,5 +109,7 @@ let compArray = [
     ),
   ],
 ];
+
+/*<div className={classname} style={{style}}>Value</div>*/
 
 export {Component, compArray};
