@@ -1,7 +1,6 @@
 .wrapper {
     height: 70vh;
     
-
 }
 
 
@@ -10,7 +9,8 @@ h2 {
     justify-content: center;
     align-items: center;
     font-size: 25px;
-    margin-top: 50px;
+    margin-top: 100px;
+
 }
 
 h3 {
@@ -24,18 +24,24 @@ h3 {
 
 .step1  {
     margin-top: 4rem;
+    margin-left: 40px;
+    margin-right: 40px;
     padding: 10px;
     background-color: #fa9d5b;
     border-radius: 50%;
 }
 .step2  {
     margin-top: 4rem;
+    margin-left: 40px;
+    margin-right: 40px;
     padding: 10px;
     background-color: #fa9d5b;
     border-radius: 50%;
 }
 .step3  {
     margin-top: 4rem;
+    margin-left: 40px;
+    margin-right: 40px;
     padding: 10px;
     background-color: #fa9d5b;
     border-radius: 50%;
@@ -43,6 +49,7 @@ h3 {
 .steps {
     display: flex;
     justify-content: space-between;
+    
   
 }
 
@@ -56,4 +63,15 @@ h3 {
 
 p {
     color: #FFF;
+}
+
+.link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+}
+
+.link {
+    color: black;
 }
