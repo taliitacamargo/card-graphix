@@ -4,51 +4,55 @@ import PreferencesForm from "../PreferencesForm";
 
 import './card.css';
 
-import {Component, compArray} from "../../utils/cardArray";
+import {compArray} from "../../utils/cardArray";
 
 const CardBuilder = () => {
+  const [layoutsArray, setLayoutsArray] = useState(compArray);
   const [selectedLayout, setSelectedLayout] = useState(1);
+  const [currentLayout, setCurrentLayout] = useState(layoutsArray[selectedLayout]);
   const [selectedComp, setSelectedComp] = useState(0);
-  const [compName, setCompName] = useState("Layouts");
-  const [currentProps, setCurrentProps] = useState([]);
+  const [currentComp, setCurrentComp] = useState(currentLayout[selectedComp]);/*useState(currentLayout[selectedComp]);*/
+  const [compName, setCompName] = useState(currentComp[1]);
+  const [currentProps, setCurrentProps] = useState(currentComp[2]);
 
 
   const createPreferenceForm = (comp) => { //Needs to return objects and needs to not call multiple times
     if(selectedLayout === 0){
       return <></>;
     }
-    let parsed = JSON.parse(comp.compStyle);
+    let parsed = comp[2];
     let propForms = [];
-    if(comp.compClass !== "Background" && comp.compClass !== "Logo"){ //Doesnt include textContent for background and logo
-      propForms.push({compClass: comp.compClass, compProp: "textContent", compValue: comp.compValue})
+    if(comp[1] !== "Background" && comp[1] !== "Logo"){ //Doesnt include textContent for background and logo
+      propForms.push({compClass: comp[1], compProp: "textContent", compValue: comp[0]})
     }
 
     for (const property in parsed) {
-      propForms.push({compClass: comp.compClass, compProp: property, compValue: parsed[property]});
+      propForms.push({compClass: comp[1], compProp: property, compValue: parsed[property]});
     }
 
     setCurrentProps(propForms);
-    setCompName(comp.compClass);
+    setCurrentComp(comp);
+    setCompName(comp[1]);
     return propForms;
   };
 
   const CreateCardComp = (item, i) => {
-    if(item.compClass === "Logo"){
-      return <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>
+    if(item[1] === "Logo"){
+      return <div className={item[1]} style={item[2]} key={i}>
       <img alt="logo"></img>
       </div>
     } else {
-    return <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>
-      {item.compValue}
+    return <div className={item[1]} style={item[2]} key={i}>
+      {item[0]}
     </div>
     }
   };
 
-  const cardComps = compArray[selectedLayout].map((item, i) => ( //Fill card with component from compArray[layout]
+  const cardComps = layoutsArray[selectedLayout].map((item, i) => ( //Fill card with component from compArray[layout]
     CreateCardComp(item, i)
   ));
 
-  const BuildPreferences = (item, i) => {
+  /*const BuildPreferences = (item, i) => {
     console.log(i);
     let tempObj = { compIndex: i, ...item};
     return <PreferencesForm key={i} {...tempObj} />
@@ -56,7 +60,7 @@ const CardBuilder = () => {
 
   const preferences = currentProps.map((item, i) => (
     BuildPreferences(item, i)
-  ));
+  ));*/
 
   const BuildCompButton = (item, i) => {
     if(selectedLayout === 0){
@@ -65,16 +69,16 @@ const CardBuilder = () => {
      return <button key={i} onClick={(e) => {
       e.preventDefault();
       setSelectedComp(i)
-    }}>{item.compClass}</button>
+    }}>{item[1]}</button>
   }
   
-  const componentButtons = compArray[selectedLayout].map((item, i) => (
+  const componentButtons = currentLayout.map((item, i) => (
     BuildCompButton(item, i)
   ));
   
   useEffect(() => { //When selectedComp is updated, make preference form
-    createPreferenceForm(compArray[selectedLayout][selectedComp]);
-  }, [selectedLayout, selectedComp]);
+    createPreferenceForm(layoutsArray[selectedLayout][selectedComp]);
+  }, [layoutsArray, selectedLayout, selectedComp]);
 
   useEffect(() => {
     console.log(currentProps);
@@ -91,7 +95,7 @@ const CardBuilder = () => {
         </div>
         <div className="PreferencesForm">
           <div>{compName}</div>
-          {preferences}
+          {/*preferences*/}
         </div>
       </div>
     </div>
