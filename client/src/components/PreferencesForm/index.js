@@ -11,7 +11,6 @@ const PreferencesForm = ({compClass, compProp, compValue, compIndex}) => {
     e.preventDefault();
     changeValue(compClass, compProp, e.target.value);
   }}/>
-  console.log(compClass + " " +  compProp + " " + compValue + " " + compIndex);
 
   const changeValue = (className, property, value) => {
     //React dom find by class name, replace property value with new value, or add value if not already in it
@@ -37,7 +36,7 @@ const PreferencesForm = ({compClass, compProp, compValue, compIndex}) => {
   }, [currentVal])
 
   if(currentVal !== compValue){
-    console.log(currentVal + " " + compValue)
+    //console.log(currentVal + " " + compValue)
     document.getElementById(formClass).value = compValue;
     setCurrentVal(compValue);
   }

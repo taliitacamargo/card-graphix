@@ -12,6 +12,7 @@ const CardBuilder = () => {
   const [currentLayout, setCurrentLayout] = useState(layoutsArray[selectedLayout]);
   const [selectedComp, setSelectedComp] = useState(0);
   const [currentComp, setCurrentComp] = useState(currentLayout[selectedComp]);/*useState(currentLayout[selectedComp]);*/
+  const [compText, setCompText] = useState(currentComp[0]);
   const [compName, setCompName] = useState(currentComp[1]);
   const [currentProps, setCurrentProps] = useState(currentComp[2]);
 
@@ -51,13 +52,22 @@ const CardBuilder = () => {
     CreateCardComp(item, i)
   ));
 
+  /*const ChangePropValue = (prop, value) => {
+    setCurrentProps({...currentProps, prop: value})
+  }*/ //Need to send function that changes state variable
+
   const BuildPreferences = (item, value, index) => {
+    if(item === "textContent" && value === ""){
+      return <div></div>
+    }
     let tempObj = { compClass: compName, compProp: item, compValue: value, compIndex: index};
     return <PreferencesForm key={index} {...tempObj} />
-  }
+  } 
+
+  const textEdit = BuildPreferences("textContent", compText, 0);
 
   const preferences = Object.keys(currentProps).map((item, i) => (
-    BuildPreferences(item, currentProps[item], i)
+    BuildPreferences(item, currentProps[item], (i + 1))
   ));
 
   const BuildCompButton = (item, i) => {
@@ -79,14 +89,14 @@ const CardBuilder = () => {
   }, [layoutsArray, selectedLayout, selectedComp]);
 
   useEffect(() => {
+    setCompText(currentComp[0]);
     setCurrentProps(currentComp[2]);
-    console.log(currentComp);
   }, [currentComp]);
 
   useEffect(() => {
     console.log(currentProps);
   }, [currentProps])
-
+  
   return (
     <div className="app">
       <div className="CardPage">
@@ -98,6 +108,7 @@ const CardBuilder = () => {
         </div>
         <div className="PreferencesForm">
           <div>{compName}</div>
+          {textEdit}
           {preferences}
         </div>
       </div>
