@@ -3,7 +3,6 @@ import Pdf from "./pdf"
 import PreferencesForm from "../PreferencesForm";
 import Cloudinary from '../Cloudinary';
 
-
 import './card.css';
 
 import {compArray} from "../../utils/cardArray";
