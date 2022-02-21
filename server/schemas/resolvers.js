@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Card, Component } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -11,6 +11,23 @@ const resolvers = {
     profile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
     },
+    // Talita's resolvers' (find function) edits start here
+    // if you want all cards related to a user, use ProfileId
+    // if you want to find all the cards, the reference is not important
+    cards: async (parent, { profileId }) => {
+      const params = profileId ? { profileId } : {};
+      return Card.find(params).sort({ createdAt: -1 });
+    },
+    card: async (parent, { cardId }) => {
+      return Card.findOne({ _id: cardId });
+    },
+    me: async (parent, args, context) => {
+      if (context.profile) {
+        return Profile.findOne({ _id: context.user._id }).populate('cards')
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    // and ends here
   },
 
   Mutation: {
@@ -40,7 +57,40 @@ const resolvers = {
     removeProfile: async (parent, { profileId }) => {
       return Profile.findOneAndDelete({ _id: profileId });
     },
-  },
+    // Talita's mutations' editing starts here 
+    createCard: async (parent, { cardId }, context) => {
+      if (context.profile) {
+        const card = await Card.create({
+          cardId, logo, components
+        });
+        await Profile.findOneAndUpdate(
+          { _id: context.profile._id },
+          { $addToSet: { cards: card._id } }
+        );
+        return card;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    removeCard: async (parent, { cardId }) => {
+      return Card.findOneAndDelete({ _id: cardId });
+    },
+
+    updateCard: async (parent, { cardId }) => {
+      return Card.findOneAndUpdate(
+        { _id: cardId },
+        {
+          $addToSet: {
+            logo, components
+          }
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+  }
 };
 
 module.exports = resolvers;
