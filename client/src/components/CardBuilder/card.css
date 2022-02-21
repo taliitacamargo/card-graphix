@@ -26,6 +26,11 @@
     font-size: 8px;
 }
 
+.CardView img{
+    position: absolute;
+    z-index: 6;
+}
+
 .PreferencesForm{
     position: relative;
     background-color: lightgrey;

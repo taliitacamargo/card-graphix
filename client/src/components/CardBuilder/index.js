@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import PreferencesForm from "../PreferencesForm";
+import Cloudinary from '../Cloudinary';
+
 
 import './card.css';
 
 import {compArray} from "../../utils/cardArray";
+
+import defLogo from "../../assets/transparent.png";
 
 const CardBuilder = () => {
   const [layoutsArray, setLayoutsArray] = useState(compArray);
@@ -15,7 +19,7 @@ const CardBuilder = () => {
   const [compText, setCompText] = useState(currentComp[0]);
   const [compName, setCompName] = useState(currentComp[1]);
   const [currentProps, setCurrentProps] = useState(currentComp[2]);
-
+  const [currentLogo, setCurrentLogo] = useState(defLogo);
 
   const createPreferenceForm = (comp) => { //Needs to return objects and needs to not call multiple times
     if(selectedLayout === 0){
@@ -38,9 +42,7 @@ const CardBuilder = () => {
 
   const CreateCardComp = (item, i) => {
     if(item[1] === "Logo"){
-      return <div className={item[1]} style={item[2]} key={i}>
-      <img alt="logo"></img>
-      </div>
+      return <img alt="logo" className={item[1]} style={item[2]} key={i} src={currentLogo}></img>
     } else {
     return <div className={item[1]} style={item[2]} key={i}>
       {item[0]}
@@ -83,6 +85,10 @@ const CardBuilder = () => {
   const componentButtons = currentLayout.map((item, i) => (
     BuildCompButton(item, i)
   ));
+
+  const SetLogo = (path) => {
+    setCurrentLogo(path);
+  };
   
   useEffect(() => { //When selectedComp is updated, make preference form
     createPreferenceForm(layoutsArray[selectedLayout][selectedComp]);
@@ -112,6 +118,7 @@ const CardBuilder = () => {
           {preferences}
         </div>
       </div>
+      <Cloudinary SetLogo={SetLogo}/>
     </div>
   );
 };
