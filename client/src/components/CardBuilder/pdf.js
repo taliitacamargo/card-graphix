@@ -2,7 +2,6 @@ import React from "react";
 import jsPDF from "jspdf";
 import html2canvas from 'html2canvas';
 
-
 const doc = new jsPDF();
 const Pdf = <div className = "CardView"></div>;
 
@@ -20,8 +19,8 @@ const exportPdf = () => {
 }
 
     return (
-        <div>
-            <button onClick = {exportPdf}>Export to PDF</button>
-        </div>
+        <div  className = "text-center">
+            <button  type="button" className="btn btn-primary" onClick = {exportPdf}>Export to PDF</button>
+        </div> 
     )
 }
