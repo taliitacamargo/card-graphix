@@ -35,7 +35,7 @@ let compArray = [
     ],
     [
       "Mac Jones",
-      "NameValue",
+      "Name",
       {
         left: "52%",
         top: "5%",
@@ -44,7 +44,7 @@ let compArray = [
     ],
     [
       "FullStack Developer",
-      "TitleValue",
+      "Title",
       {
         left: "52%",
         top: "16%",
@@ -53,7 +53,7 @@ let compArray = [
     ],
     [
       "+1 412-111-1111",
-      "Phone1Value",
+      "Primary Phone",
       {
         right: "4%",
         top: "33%",
@@ -61,7 +61,7 @@ let compArray = [
     ],
     [
       "+1 412-222-2222",
-      "Phone2Value",
+      "Secondary Phone",
       {
         right: "4%",
         top: "38%",
@@ -69,7 +69,7 @@ let compArray = [
     ],
     [
       "user56@hotmail.com",
-      "EmailValue",
+      "Email",
       {
         right: "4%",
         top: "53%",
@@ -77,7 +77,7 @@ let compArray = [
     ],
     [
       "user56.github.io/MyPortfolio/",
-      "WebsiteValue",
+      "Website",
       {
         right: "4%",
         top: "58%",
@@ -85,7 +85,7 @@ let compArray = [
     ],
     [
       "83 Park Place",
-      "Address1Value",
+      "Primary Address",
       {
         right: "4%",
         top: "73%",
@@ -93,7 +93,7 @@ let compArray = [
     ],
     [
       "22 Atlantic Avenue",
-      "Address2Value",
+      "Secondary Address",
       {
         right: "4%",
         top: "78%",
