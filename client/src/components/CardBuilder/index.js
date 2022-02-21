@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import html_to_pdf from "html-pdf-node";
+import Pdf from "./pdf"
 import PreferencesForm from "../PreferencesForm";
 
 import './card.css';
@@ -154,7 +154,9 @@ const CardBuilder = () => {
           {preferences}
         </div>
       </div>
+        <Pdf/>
     </div>
+  
   );
 };
 
