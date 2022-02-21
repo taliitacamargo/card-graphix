@@ -11,6 +11,7 @@ function Cloudinary(props) {
                 (error, result) => { 
                     if (!error && result && result.event === "success") { 
                         console.log('Cheetah! Here is the image info: ', result.info); 
+                        props.SetLogo(result.info.secure_url);
                     }
                 }
             )
