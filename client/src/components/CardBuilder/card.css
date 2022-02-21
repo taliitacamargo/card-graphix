@@ -33,6 +33,17 @@
     margin: 1%;
 }
 
+.PreferencesForm form{
+    display: flex;
+    flex-direction: column;
+}
+
+.ComponentButtons{
+    position: absolute;
+    display:grid;
+    left: 10vw;
+}
+
 @keyframes shadowCircle {
     0% {box-shadow: 1px 1px;}
     25% {box-shadow: 1px -1px;}
