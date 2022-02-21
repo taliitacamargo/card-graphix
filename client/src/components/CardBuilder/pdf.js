@@ -1,23 +1,27 @@
-import ReactDOMServer from "react-dom/server";
-import Component from "./index"
-import jsPDF from "jspdf";
 import React from "react";
+import jsPDF from "jspdf";
+import html2canvas from 'html2canvas';
+
 
 const doc = new jsPDF();
 const Pdf = <div className = "CardView"></div>;
 
 
+
 export default function App() {
-    const exportToPDF = () => {
-        doc.html (ReactDOMServer.renderToStaticMarkup(Pdf), {
-            callback: () => {
-                doc.save("myBusinessCard.pdf");
-            }
-        });
-    };
+const exportPdf = () => {
+    html2canvas(document.querySelector(".CardView")).then(canvas => {
+        document.body.appendChild(canvas);
+        const img = canvas.toDataURL('image/png');
+        const doc = new jsPDF();
+        doc.addImage(img, 'PNG', 0,0);
+        doc.save("myBusinessCard.pdf")
+    })
+}
+
     return (
         <div>
-            <button onClick = {exportToPDF}>Export to PDF</button>
+            <button onClick = {exportPdf}>Export to PDF</button>
         </div>
     )
 }
