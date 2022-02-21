@@ -30,7 +30,6 @@ const CardBuilder = () => {
       propForms.push({compClass: comp[1], compProp: property, compValue: parsed[property]});
     }
 
-    setCurrentProps(propForms);
     setCurrentComp(comp);
     setCompName(comp[1]);
     return propForms;
@@ -48,19 +47,18 @@ const CardBuilder = () => {
     }
   };
 
-  const cardComps = layoutsArray[selectedLayout].map((item, i) => ( //Fill card with component from compArray[layout]
+  const cardComps = currentLayout.map((item, i) => ( //Fill card with component from compArray[layout]
     CreateCardComp(item, i)
   ));
 
-  /*const BuildPreferences = (item, i) => {
-    console.log(i);
-    let tempObj = { compIndex: i, ...item};
-    return <PreferencesForm key={i} {...tempObj} />
+  const BuildPreferences = (item, value, index) => {
+    let tempObj = { compClass: compName, compProp: item, compValue: value, compIndex: index};
+    return <PreferencesForm key={index} {...tempObj} />
   }
 
-  const preferences = currentProps.map((item, i) => (
-    BuildPreferences(item, i)
-  ));*/
+  const preferences = Object.keys(currentProps).map((item, i) => (
+    BuildPreferences(item, currentProps[item], i)
+  ));
 
   const BuildCompButton = (item, i) => {
     if(selectedLayout === 0){
@@ -81,8 +79,13 @@ const CardBuilder = () => {
   }, [layoutsArray, selectedLayout, selectedComp]);
 
   useEffect(() => {
+    setCurrentProps(currentComp[2]);
+    console.log(currentComp);
+  }, [currentComp]);
+
+  useEffect(() => {
     console.log(currentProps);
-  }, [currentProps]);
+  }, [currentProps])
 
   return (
     <div className="app">
@@ -95,7 +98,7 @@ const CardBuilder = () => {
         </div>
         <div className="PreferencesForm">
           <div>{compName}</div>
-          {/*preferences*/}
+          {preferences}
         </div>
       </div>
     </div>
