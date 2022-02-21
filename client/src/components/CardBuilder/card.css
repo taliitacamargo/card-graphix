@@ -26,11 +26,27 @@
     font-size: 8px;
 }
 
+.CardView img{
+    position: absolute;
+    z-index: 6;
+}
+
 .PreferencesForm{
     position: relative;
     background-color: lightgrey;
     padding: 1%;
     margin: 1%;
+}
+
+.PreferencesForm form{
+    display: flex;
+    flex-direction: column;
+}
+
+.ComponentButtons{
+    position: absolute;
+    display:grid;
+    left: 10vw;
 }
 
 @keyframes shadowCircle {
