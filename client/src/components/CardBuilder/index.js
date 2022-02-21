@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Pdf from "./pdf"
 import PreferencesForm from "../PreferencesForm";
 import Cloudinary from '../Cloudinary';
 
@@ -118,8 +118,10 @@ const CardBuilder = () => {
           {preferences}
         </div>
       </div>
+        <Pdf/>
       <Cloudinary SetLogo={SetLogo}/>
     </div>
+  
   );
 };
 
