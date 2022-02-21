@@ -8,6 +8,7 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
+ 
   return (
     <div className="Header">
       <Link className="logo" to="/">
@@ -30,9 +31,6 @@ const Header = () => {
             </div>
           </>
         )}
-      <div className="container">
-        <p className="intro">"Create Your Perfect Business Card"</p>
-      </div>
     </div>
 
   );

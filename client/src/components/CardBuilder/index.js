@@ -6,7 +6,7 @@ import './card.css';
 
 const CardBuilder = () => {
   const [selectedComp, setSelectedComp] = useState(3);
-  const [compName, setCompName] = useState("Please Select A Coponent");
+  const [compName, setCompName] = useState("Please Select A Component");
   const [currentProps, setCurrentProps] = useState([]);
 
   class Component {

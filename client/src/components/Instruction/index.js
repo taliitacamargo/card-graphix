@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import "./instruction.css"
 
 
@@ -26,9 +27,14 @@ export default function Instruction() {
                         <p>Export and done!</p>
                     </div>
                 </div>
-
+            </div>
+            <div className="link-container">
+                <Link to="/intro">
+                <p className="link"> Click here to get started! </p>
+                </Link>
             </div>
         </div>
 
     )
 }
+ {/* <p>Hover <a href="#" data-replace="get a link"><span>get a link</span></a></p> */}
