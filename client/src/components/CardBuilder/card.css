@@ -19,6 +19,7 @@
     animation-name: shadowCircle;
     animation-duration: 2s;
     animation-iteration-count: infinite;
+    overflow: hidden;
 }
 
 .CardView div{
