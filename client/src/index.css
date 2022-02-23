@@ -1,8 +1,10 @@
 * {
   font-family: 'Montserrat', sans-serif;
   
-  
 }
+
+
+
 /* ! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -1016,6 +1018,7 @@ a:hover {
   width: 100%;
   display: block;
   text-align: center;
+  
 }
 
 .btn.btn-primary {
@@ -1037,12 +1040,12 @@ a:hover {
 }
 
 .btn.btn-info {
-  background-color: #98B659;
+  background-color: #E89C7D;
   color: #ffffff;
 }
 
 .btn.btn-info:hover {
-  background-color: #a3d140;
+  background-color: rgb(219, 169, 138);
 }
 
 .btn.btn-light {
