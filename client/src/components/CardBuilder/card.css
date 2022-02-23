@@ -32,6 +32,18 @@
     z-index: 6;
 }
 
+.LayoutSelector{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 10vw;
+}
+.LayoutSelector img{
+    width: 40%;
+    margin: 5px;
+    border: 1px solid black;
+}
+
 .PreferencesForm{
     position: relative;
     background-color: lightgrey;

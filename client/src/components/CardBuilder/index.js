@@ -12,7 +12,7 @@ import {transparent, layout0, layout1} from "../../assets/index.js";
 
 const CardBuilder = () => {
   const [state, dispatch] = useCardReducer();
-  const [selectedLayout, setSelectedLayout] = useState(1);
+  const [selectedLayout, setSelectedLayout] = useState(0);
   const [currentLayout, setCurrentLayout] = useState(state[selectedLayout]);
   const [selectedComp, setSelectedComp] = useState(0);
   const [currentComp, setCurrentComp] = useState(state[selectedLayout][selectedComp]);
@@ -21,6 +21,19 @@ const CardBuilder = () => {
   const [compProps, setCompProps] = useState(state[selectedLayout][selectedComp][2]);
 
   const [currentLogo, setCurrentLogo] = useState(transparent);
+
+  /* LAYOUT SELECTOR */
+  const layoutImages = [layout0, layout1];
+  const CreateLayoutSelector = (item, i) => {
+    if(selectedLayout !== 0){
+      return <></>;
+    } else {
+      let tempKey = "layout" + i;
+      return <button key={tempKey} onClick={(e) => (e.preventDefault, setSelectedLayout(i))}>{tempKey}</button>;
+    }
+  }
+
+  const layoutSelector = layoutImages.map((item, i) => CreateLayoutSelector(item, i));
 
   //dispatch({type: "card-layout", selectedLayout: 0, selectedComp: 0, newValue: ["Micky", "Name", {left: "10%", top: "5%"}]});
   //console.log(dispatch({type: 'card-layout', selectedLayout: 0, layout: ["new comp", "heyyy", {top: "4%", left: "10%"}]}));
@@ -101,7 +114,16 @@ const CardBuilder = () => {
   };
 
   useEffect(() => {
-    setCurrentComp(state[selectedLayout][selectedComp])
+    setCurrentLayout(state[selectedLayout]);
+    if(selectedComp !== 0){
+      setSelectedComp(0);
+    } else {
+      setCurrentComp(state[selectedLayout][0]); //0 can be assumed
+    }
+  }, [selectedLayout])
+
+  useEffect(() => {
+    setCurrentComp(state[selectedLayout][selectedComp]);
   }, [selectedComp])
 
   useEffect(() => {
@@ -131,6 +153,9 @@ const CardBuilder = () => {
           <div>{compClass}</div>
           {textEdit}
           {preferences}
+        </div>
+        <div className="LayoutSelector">
+          {layoutSelector}
         </div>
       </div>
       <Pdf/>
