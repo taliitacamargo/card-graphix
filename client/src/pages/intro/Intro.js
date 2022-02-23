@@ -11,6 +11,7 @@ const Intro = () => {
         <p className="intro">"Create Your Perfect Business Card"</p>
       </div>
       <CardBuilder />
+      <Cloudinary />
     </main>
   );
 };
