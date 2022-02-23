@@ -29,7 +29,7 @@ const CardBuilder = () => {
       return <></>;
     } else {
       let tempKey = "layout" + i;
-      return <button key={tempKey} onClick={(e) => (e.preventDefault, setSelectedLayout(i))}>{tempKey}</button>;
+      return <button key={tempKey} onClick={(e) => (e.preventDefault, setSelectedLayout(i))}><img src={item}></img></button>;
     }
   }
 
@@ -37,29 +37,6 @@ const CardBuilder = () => {
 
   //dispatch({type: "card-layout", selectedLayout: 0, selectedComp: 0, newValue: ["Micky", "Name", {left: "10%", top: "5%"}]});
   //console.log(dispatch({type: 'card-layout', selectedLayout: 0, layout: ["new comp", "heyyy", {top: "4%", left: "10%"}]}));
-  /*
-  const layoutSwitcher = layoutsArray.map((item, i) => {
-    console.log(item);
-  })
-
-  const createPreferenceForm = (comp) => { //Needs to return objects and needs to not call multiple times
-    if(selectedLayout === 0){
-      return <></>;
-    }
-    let parsed = comp[2];
-    let propForms = [];
-    if(comp[1] !== "Background" && comp[1] !== "Logo"){ //Doesnt include textContent for background and logo
-      propForms.push({compClass: comp[1], compProp: "textContent", compValue: comp[0]})
-    }
-
-    for (const property in parsed) {
-      propForms.push({compClass: comp[1], compProp: property, compValue: parsed[property]});
-    }
-
-    setCurrentComp(comp);
-    setCompName(comp[1]);
-    return propForms;
-  };*/
 
   const CreateCardComp = (item, i) => {
     if(item[1] === "Logo"){
@@ -113,6 +90,20 @@ const CardBuilder = () => {
     setCurrentLogo(path);
   };
 
+  const UtilityButtons = () => {
+    if(selectedLayout === 0){
+      return <></>
+    } else {
+      return <div>
+        <Pdf/>
+        <Cloudinary SetLogo={SetLogo}/>
+      </div>
+    }
+  }
+
+  const utility = UtilityButtons();
+
+  /* useEffect Pipeline */
   useEffect(() => {
     setCurrentLayout(state[selectedLayout]);
     if(selectedComp !== 0){
@@ -158,8 +149,7 @@ const CardBuilder = () => {
           {layoutSelector}
         </div>
       </div>
-      <Pdf/>
-      <Cloudinary SetLogo={SetLogo}/>
+      {UtilityButtons()}
     </div>
   );
 };

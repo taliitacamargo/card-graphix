@@ -38,9 +38,15 @@
     flex-direction: column;
     left: 10vw;
 }
-.LayoutSelector img{
-    width: 40%;
-    margin: 5px;
+
+.LayoutSelector button{
+    width: 35%;
+    margin: 3px;
+}
+
+.LayoutSelector button img{
+    width: 100%;
+    margin: 1px;
     border: 1px solid black;
 }
 
