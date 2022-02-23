@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-const PreferencesForm = ({compClass, compProp, compValue, compIndex}) => {
+const PreferencesForm = ({compClass, compProp, compValue, compIndex, SetProp}) => {
   const [currentVal, setCurrentVal] = useState(compValue);
   let formClass = "form" + compIndex;
   let inp = <input 
@@ -13,6 +13,7 @@ const PreferencesForm = ({compClass, compProp, compValue, compIndex}) => {
   }}/>
 
   const changeValue = (className, property, value) => {
+    SetProp(property, value);
     //React dom find by class name, replace property value with new value, or add value if not already in it
     let target = document.getElementsByClassName(className)[0];
     if(target && compProp === "textContent"){

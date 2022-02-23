@@ -6,8 +6,6 @@ import Cloudinary from '../Cloudinary';
 
 import './card.css';
 
-import {compArray} from "../../utils/cardArray";
-
 import {transparent, layout0, layout1} from "../../assets/index.js";
 
 const CardBuilder = () => {
@@ -21,6 +19,16 @@ const CardBuilder = () => {
   const [compProps, setCompProps] = useState(state[selectedLayout][selectedComp][2]);
 
   const [currentLogo, setCurrentLogo] = useState(transparent);
+
+  const SetProp = (prop, value) => { //Called from preferences form when field is changed
+    if(prop === 'textContent' && compValue !== value){
+      setCompValue(value);
+    } else if(compProps[prop] && compProps[prop] !== value){
+      let tempProps = {...compProps};
+      tempProps[prop] = value;
+      setCompProps(tempProps);
+    }
+  }
 
   /* LAYOUT SELECTOR */
   const layoutImages = [layout0, layout1];
@@ -51,17 +59,13 @@ const CardBuilder = () => {
   const cardComps = currentLayout.map((item, i) => ( //Fill card with component from compArray[layout]
     CreateCardComp(item, i)
   ));
-
-  /*const ChangePropValue = (prop, value) => {
-    setCurrentProps({...currentProps, prop: value})
-  }*/ //Need to send function that changes state variable
   
   /* PREFERENCES EDITOR */
   const BuildPreferences = (item, value, index) => {
     if(item === "textContent" && value === ""){
       return <div></div>
     }
-    let tempObj = { compClass: compClass, compProp: item, compValue: value, compIndex: index};
+    let tempObj = { compClass: compClass, compProp: item, compValue: value, compIndex: index, SetProp: SetProp};
     return <PreferencesForm key={index} {...tempObj} />
   } 
 
@@ -78,7 +82,9 @@ const CardBuilder = () => {
     }
      return <button key={i} onClick={(e) => {
       e.preventDefault();
-      setSelectedComp(i)
+      //Use Reducer to change state
+      dispatch({type: "card-layout", selectedLayout: selectedLayout, selectedComp: selectedComp, newValue: [compValue, compClass, {...compProps}]});
+      setSelectedComp(i);
     }}>{item[1]}</button>
   }
   
@@ -100,7 +106,12 @@ const CardBuilder = () => {
       </div>
     }
   }
+
   /* useEffect Pipeline */
+  useEffect(() => {
+    setCurrentLayout(state[selectedLayout]);
+  }, [state]);
+
   useEffect(() => {
     setCurrentLayout(state[selectedLayout]);
     if(selectedComp !== 0){
@@ -119,15 +130,7 @@ const CardBuilder = () => {
     setCompClass(currentComp[1]);
     setCompProps(currentComp[2]);
   }, [currentComp]);
-  /*
-  useEffect(() => { //When selectedComp is updated, make preference form
-    createPreferenceForm(layoutsArray[selectedLayout][selectedComp]);
-  }, [layoutsArray, selectedLayout, selectedComp]);
 
-  useEffect(() => {
-    console.log(currentProps);
-  }, [currentProps])
-  */
   return (
     <div className="app">
       <div className="CardPage">
@@ -150,4 +153,5 @@ const CardBuilder = () => {
     </div>
   );
 };
+
 export default CardBuilder;
