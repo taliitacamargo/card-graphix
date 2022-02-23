@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useCardReducer } from '../../utils/cardReducer';
 import Pdf from "./pdf"
 import PreferencesForm from "../PreferencesForm";
 import Cloudinary from '../Cloudinary';
@@ -10,16 +11,20 @@ import {compArray} from "../../utils/cardArray";
 import {transparent, layout0, layout1} from "../../assets/index.js";
 
 const CardBuilder = () => {
-  const [layoutsArray, setLayoutsArray] = useState(compArray); //NEEDS TO BE EDITED
+  const [state, dispatch] = useCardReducer();
   const [selectedLayout, setSelectedLayout] = useState(1);
-  const [currentLayout, setCurrentLayout] = useState(layoutsArray[selectedLayout]);
+  const [currentLayout, setCurrentLayout] = useState(state[selectedLayout]);
   const [selectedComp, setSelectedComp] = useState(0);
-  const [currentComp, setCurrentComp] = useState(currentLayout[selectedComp]);
-  const [compText, setCompText] = useState(currentComp[0]);
-  const [compName, setCompName] = useState(currentComp[1]);
-  const [currentProps, setCurrentProps] = useState(currentComp[2]);
+  const [currentComp, setCurrentComp] = useState(state[selectedLayout][selectedComp]);
+  const [compValue, setCompValue] = useState(state[selectedLayout][selectedComp][0]);
+  const [compClass, setCompClass] = useState(state[selectedLayout][selectedComp][1]);
+  const [compProps, setCompProps] = useState(state[selectedLayout][selectedComp][2]);
+
   const [currentLogo, setCurrentLogo] = useState(transparent);
 
+  //dispatch({type: "card-layout", selectedLayout: 0, selectedComp: 0, newValue: ["Micky", "Name", {left: "10%", top: "5%"}]});
+  //console.log(dispatch({type: 'card-layout', selectedLayout: 0, layout: ["new comp", "heyyy", {top: "4%", left: "10%"}]}));
+  /*
   const layoutSwitcher = layoutsArray.map((item, i) => {
     console.log(item);
   })
@@ -41,7 +46,7 @@ const CardBuilder = () => {
     setCurrentComp(comp);
     setCompName(comp[1]);
     return propForms;
-  };
+  };*/
 
   const CreateCardComp = (item, i) => {
     if(item[1] === "Logo"){
@@ -60,21 +65,23 @@ const CardBuilder = () => {
   /*const ChangePropValue = (prop, value) => {
     setCurrentProps({...currentProps, prop: value})
   }*/ //Need to send function that changes state variable
-
+  
+  /* PREFERENCES EDITOR */
   const BuildPreferences = (item, value, index) => {
     if(item === "textContent" && value === ""){
       return <div></div>
     }
-    let tempObj = { compClass: compName, compProp: item, compValue: value, compIndex: index};
+    let tempObj = { compClass: compClass, compProp: item, compValue: value, compIndex: index};
     return <PreferencesForm key={index} {...tempObj} />
   } 
 
-  const textEdit = BuildPreferences("textContent", compText, 0);
+  const textEdit = BuildPreferences("textContent", compValue, 0);
 
-  const preferences = Object.keys(currentProps).map((item, i) => (
-    BuildPreferences(item, currentProps[item], (i + 1))
+  const preferences = Object.keys(compProps).map((item, i) => (
+    BuildPreferences(item, compProps[item], (i + 1))
   ));
-
+  
+  /* COMPONENT BUTTONS */
   const BuildCompButton = (item, i) => {
     if(selectedLayout === 0){
       return <></>;
@@ -92,20 +99,25 @@ const CardBuilder = () => {
   const SetLogo = (path) => {
     setCurrentLogo(path);
   };
-  
+
+  useEffect(() => {
+    setCurrentComp(state[selectedLayout][selectedComp])
+  }, [selectedComp])
+
+  useEffect(() => {
+    setCompValue(currentComp[0]);
+    setCompClass(currentComp[1]);
+    setCompProps(currentComp[2]);
+  }, [currentComp]);
+  /*
   useEffect(() => { //When selectedComp is updated, make preference form
     createPreferenceForm(layoutsArray[selectedLayout][selectedComp]);
   }, [layoutsArray, selectedLayout, selectedComp]);
 
   useEffect(() => {
-    setCompText(currentComp[0]);
-    setCurrentProps(currentComp[2]);
-  }, [currentComp]);
-
-  useEffect(() => {
     console.log(currentProps);
   }, [currentProps])
-  
+  */
   return (
     <div className="app">
       <div className="CardPage">
@@ -116,16 +128,14 @@ const CardBuilder = () => {
           {componentButtons}
         </div>
         <div className="PreferencesForm">
-          <div>{compName}</div>
+          <div>{compClass}</div>
           {textEdit}
           {preferences}
         </div>
       </div>
-        <Pdf/>
+      <Pdf/>
       <Cloudinary SetLogo={SetLogo}/>
     </div>
-  
   );
 };
-
 export default CardBuilder;
