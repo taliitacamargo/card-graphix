@@ -6,12 +6,17 @@ h1 {
     cursor: pointer;
     margin-left: 25px;
     margin-top: 20px;
+    margin-bottom: 0px;
     font-variant: small-caps;
-    
+}
+
+#top {
+    display: flex;
+    justify-content: space-between;
 }
 
 .logo:hover {
-    color: white;
+    color: black;
 }
 
 .container {
@@ -32,16 +37,15 @@ h1 {
 .container-2 {
     display: flex;
     justify-content: flex-end;
-    margin-right: 20px;
-
-
+    margin-right: 25px;
+    margin-top: 20px;
+    margin-bottom: 0px;
 }
 
 .section {
    margin: 0 10px;
    color: black;
    font-weight: 400;
-
 }
 
 .section:hover {
@@ -54,11 +58,10 @@ h1 {
     outline: none;
     background-color: transparent;
     font-weight: 400;
-    
 }
 
 .logout:hover {
     color: rgb(5, 91, 91);
-
+    text-decoration: underline;
 }
 

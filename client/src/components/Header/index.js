@@ -12,7 +12,7 @@ const Header = () => {
  
   return (
     <div className="Header">
-      <motion.div className="inner-header"
+      <motion.div className="top"
         initial={{ y: -250 }}
         animate={{ y: -10 }}
         transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
@@ -23,7 +23,7 @@ const Header = () => {
       </motion.div>
         {Auth.loggedIn() ? (
           <div className="container-2">
-          <button className="logout" onClick={logout}>
+          <button className="logout section" onClick={logout}>
             Logout
           </button>
           </div>
