@@ -16,9 +16,9 @@ import Login from './pages/login/Login';
 import ContactUs from './pages/contact-us/ContactUs';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Intro from './pages/intro/Intro';
+import Card from './pages/card/Card';
 
-
+import { CardProvider } from './utils/GlobalState';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -44,11 +44,12 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
 function App() {
   return (
       <ApolloProvider client={client}>
         <Router>
-        <div className="d-flex flex-column align-items-center justify-flex-start min-100-vh">
+        <div className="sections">
           <Header />
           <div className="m-1 d-flex flex-column align-content-center justify-content-center">
             <Route exact path="/">
@@ -60,8 +61,8 @@ function App() {
             <Route exact path="/signup">
               <Signup />
             </Route>
-            <Route exact path="/intro">
-              <Intro />
+            <Route exact path="/card">
+              <Card />
             </Route>
             <Route exact path="/profiles/:profileId">
               <Profile />

@@ -24,34 +24,32 @@ h3 {
 
 .step1  {
     margin-top: 4rem;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
     padding: 10px;
     background-color: #fa9d5b;
     border-radius: 50%;
 }
 .step2  {
     margin-top: 4rem;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
     padding: 10px;
     background-color: #fa9d5b;
     border-radius: 50%;
 }
 .step3  {
     margin-top: 4rem;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
     padding: 10px;
     background-color: #fa9d5b;
     border-radius: 50%;
 }
 .steps {
     display: flex;
-    justify-content: space-between;
-    
-  
 }
+
 
 .numbered-step-num {
     margin-top: 0;
@@ -72,6 +70,37 @@ p {
     margin-top: 90px;
 }
 
+
 .link {
     color: black;
+   
 }
+.hover-underline-animation:hover {
+    color: white;
+}
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: #0087ca;
+}
+
+.hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+
+
