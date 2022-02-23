@@ -18,7 +18,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Card from './pages/card/Card';
 
-
+import { CardProvider } from './utils/GlobalState';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
