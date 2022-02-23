@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from 'framer-motion';
 import './card2.css';
 
-import Cloudinary from '../../components/Cloudinary';
 import CardBuilder from '../../components/CardBuilder';
 
 const Card = () => {
@@ -19,8 +18,6 @@ const Card = () => {
       </motion.div>
 
       <CardBuilder/>
-      <Cloudinary />
-
     </main>
   );
 

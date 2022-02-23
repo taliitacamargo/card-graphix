@@ -1,7 +1,6 @@
 import React from "react";
 import './intro.css';
 
-import Cloudinary from '../../components/Cloudinary';
 import CardBuilder from '../../components/CardBuilder';
 
 const Intro = () => {

@@ -100,9 +100,6 @@ const CardBuilder = () => {
       </div>
     }
   }
-
-  const utility = UtilityButtons();
-
   /* useEffect Pipeline */
   useEffect(() => {
     setCurrentLayout(state[selectedLayout]);
