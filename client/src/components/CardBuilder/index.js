@@ -22,6 +22,16 @@ const CardBuilder = () => {
 
   const [currentLogo, setCurrentLogo] = useState(transparent);
 
+  const SetProp = (prop, value) => {
+    if(prop === 'textContent' && compValue !== value){
+      setCompValue(value);
+    } else if(compProps[prop] && compProps[prop] !== value){
+      let tempProps = {...compProps};
+      tempProps[prop] = value;
+      setCompProps(tempProps);
+    }
+  }
+
   /* LAYOUT SELECTOR */
   const layoutImages = [layout0, layout1];
   const CreateLayoutSelector = (item, i) => {
@@ -61,7 +71,7 @@ const CardBuilder = () => {
     if(item === "textContent" && value === ""){
       return <div></div>
     }
-    let tempObj = { compClass: compClass, compProp: item, compValue: value, compIndex: index};
+    let tempObj = { compClass: compClass, compProp: item, compValue: value, compIndex: index, SetProp: SetProp};
     return <PreferencesForm key={index} {...tempObj} />
   } 
 
