@@ -9,7 +9,7 @@ const Pdf = <div className = "CardView"></div>;
 
 export default function App() {
 const exportPdf = () => {
-    html2canvas(document.querySelector(".CardView")).then(canvas => {
+    html2canvas(document.querySelector(".CardView"), {}).then(canvas => {
         document.body.appendChild(canvas);
         const img = canvas.toDataURL('image/png');
         const doc = new jsPDF();
