@@ -4,10 +4,10 @@ function Cloudinary(props) {
     useEffect( () => {
         if(window.cloudinary){
             var myWidget = window.cloudinary.createUploadWidget({
-                cloudName: "'"+process.env.REACT_APP_CLOUDINARY_CLOUD_NAME+"'", 
-                uploadPreset: "'"+process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET+"'",
+                cloudName: 'card-graphix', 
+                uploadPreset: 'fcep02lt',
                 sources: [ 'local', 'image_search', 'instagram', 'facebook', 'url', 'camera'],
-                googleApiKey: "'"+process.env.REACT_APP_CLOUDINARY_GOOGLE_API_KEY+"'" }, 
+                googleApiKey: 'AIzaSyCZqq4TeSsr3D4FuyKeLxgcV-cmgKwA-no' }, 
                 (error, result) => { 
                     if (!error && result && result.event === "success") { 
                         console.log('Cheetah! Here is the image info: ', result.info); 
