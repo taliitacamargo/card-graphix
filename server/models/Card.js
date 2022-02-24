@@ -25,9 +25,11 @@ const cardSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Profile',
         }
-    ]
+    ],
 
-
+    selectedLayoutField: {
+        type: Number,
+    }
 });
 
 const Card = model('Card', cardSchema);
