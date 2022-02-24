@@ -123,8 +123,6 @@ let initialState = [
         left: "0%",
         top: "0%",
         backgroundColor: "",
-        
-
       },
     ],
     [
