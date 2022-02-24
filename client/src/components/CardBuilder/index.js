@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useCardReducer } from '../../utils/cardReducer';
+import Frag from '../../utils/componentUtil/frag';
 import Pdf from "./pdf"
 import PreferencesForm from "../PreferencesForm";
 import Cloudinary from '../Cloudinary';
+
+import { useMutation } from '@apollo/client';
+import { CREATE_CARD } from '../../utils/mutations';
 
 import './card.css';
 
@@ -32,12 +36,19 @@ const CardBuilder = () => {
 
   /* LAYOUT SELECTOR */
   const layoutImages = [layout0, layout1];
+
+  const SelectLayout = (event, index) => {
+    event.preventDefault();
+    setSelectedLayout(index);
+  }
+
   const CreateLayoutSelector = (item, i) => {
     if(selectedLayout !== 0){
-      return <></>;
+      let tempKey = "fragment" + i;
+      return <Frag key={tempKey} />;
     } else {
       let tempKey = "layout" + i;
-      return <button key={tempKey} onClick={(e) => (e.preventDefault, setSelectedLayout(i))}><img src={item} ></img></button>;
+      return <button key={tempKey} onClick={(e) => SelectLayout(e, i)}><img src={item} ></img></button>;
     }
   }
 
@@ -47,12 +58,11 @@ const CardBuilder = () => {
   //console.log(dispatch({type: 'card-layout', selectedLayout: 0, layout: ["new comp", "heyyy", {top: "4%", left: "10%"}]}));
 
   const CreateCardComp = (item, i) => {
+    let tempKey = "comp" + i;
     if(item[1] === "Logo"){
-      return <img alt="logo" className={item[1]} style={item[2]} key={i} src={currentLogo}></img>
+      return <img alt="logo" className={item[1]} style={item[2]} key={tempKey} src={currentLogo}></img>
     } else {
-    return <div className={item[1]} style={item[2]} key={i}>
-      {item[0]}
-    </div>
+      return <div className={item[1]} style={item[2]} key={tempKey}>{item[0]}</div>
     }
   };
 
@@ -62,11 +72,12 @@ const CardBuilder = () => {
   
   /* PREFERENCES EDITOR */
   const BuildPreferences = (item, value, index) => {
+    let tempKey = "pref" + index;
     if(item === "textContent" && (compClass === 'Logo' || compClass === 'Background')){
-      return <div></div>
+      return <Frag key={tempKey} />
     }
     let tempObj = { compClass: compClass, compProp: item, compValue: value, compIndex: index, SetProp: SetProp};
-    return <PreferencesForm key={index} {...tempObj} />
+    return <PreferencesForm key={tempKey} {...tempObj} />
   } 
 
   const textEdit = BuildPreferences("textContent", compValue, 0);
@@ -77,15 +88,16 @@ const CardBuilder = () => {
   
   /* COMPONENT BUTTONS */
   const BuildCompButton = (item, i) => {
+    let tempKey = "btn" + i;
     if(selectedLayout === 0){
-      return <></>;
+      return <Frag key={tempKey} />;
     }
-     return <button key={i} onClick={(e) => {
+     return (<button key={tempKey} onClick={(e) => {
       e.preventDefault();
       //Use Reducer to change state
       dispatch({type: "card-layout", selectedLayout: selectedLayout, selectedComp: selectedComp, newValue: [compValue, compClass, {...compProps}]});
       setSelectedComp(i);
-    }}>{item[1]}</button>
+    }}>{item[1]}</button>)
   }
   
   const componentButtons = currentLayout.map((item, i) => (
@@ -101,8 +113,8 @@ const CardBuilder = () => {
       return <></>
     } else {
       return <div>
-        <Pdf/>
-        <Cloudinary SetLogo={SetLogo}/>
+        <Pdf key={"exportBtn"}/>
+        <Cloudinary key={"uploadBtn"} SetLogo={SetLogo}/>
       </div>
     }
   }
