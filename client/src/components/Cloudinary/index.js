@@ -4,8 +4,8 @@ function Cloudinary(props) {
     useEffect( () => {
         if(window.cloudinary){
             var myWidget = window.cloudinary.createUploadWidget({
-                cloudName: 'doetzelhn', 
-                uploadPreset: 'bgdwrnsi',
+                cloudName: 'card-graphix', 
+                uploadPreset: 'fcep02lt',
                 sources: [ 'local', 'image_search', 'instagram', 'facebook', 'url', 'camera'],
                 googleApiKey: 'AIzaSyCZqq4TeSsr3D4FuyKeLxgcV-cmgKwA-no' }, 
                 (error, result) => { 
