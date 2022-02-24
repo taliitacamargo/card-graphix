@@ -1,11 +1,11 @@
 const { Schema, model } = require('mongoose');
 
 const componentSchema = new Schema({
-    id: {
-        type: String,
-        required: true,
-        trim: true,
-    },
+    // id: {
+    //     type: String,
+    //     required: true,
+    //     trim: true,
+    // },
 
     compClass: {
         type: String,
@@ -15,7 +15,7 @@ const componentSchema = new Schema({
         type: String,
     },
     compStyle: {
-        type: String,
+        type: Object,
     },
 
 });
