@@ -29,7 +29,7 @@ const CardBuilder = () => {
       setCompValue(value);
     } else if(prop !== 'textContent' && compProps[prop] !== value){
       let tempProps = {...compProps};
-      tempProps[prop] = value; //Does not update value if its blank
+      tempProps[prop] = value;
       setCompProps(tempProps);
     }
   }
@@ -37,18 +37,27 @@ const CardBuilder = () => {
   /* LAYOUT SELECTOR */
   const layoutImages = [layout0, layout1];
 
+  const SelectDefault = (event) => {
+    event.preventDefault();
+    setSelectedComp(0);
+    setSelectedLayout(0);
+  }
+
   const SelectLayout = (event, index) => {
     event.preventDefault();
     setSelectedLayout(index);
   }
 
   const CreateLayoutSelector = (item, i) => {
-    if(selectedLayout !== 0){
-      let tempKey = "fragment" + i;
+    if(selectedLayout !== 0 && i === 0){
+      let tempKey = "select" + i;
+      return <button className="BackBtn" key={tempKey} onClick={(e) => SelectDefault(e)}>« Select Layout</button>;
+    } else if(selectedLayout !== 0){
+      let tempKey = "frag" + i;
       return <Frag key={tempKey} />;
     } else {
       let tempKey = "layout" + i;
-      return <button key={tempKey} onClick={(e) => SelectLayout(e, i)}><img src={item} ></img></button>;
+      return <button className="LayoutBtn" key={tempKey} onClick={(e) => SelectLayout(e, i)}><img src={item} ></img></button>;
     }
   }
 

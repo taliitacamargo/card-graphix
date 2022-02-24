@@ -39,15 +39,21 @@
     left: 10vw;
 }
 
-.LayoutSelector button{
+.LayoutBtn{
     width: 35%;
     margin: 3px;
 }
 
-.LayoutSelector button img{
+.LayoutBtn img{
     width: 100%;
     margin: 1px;
     border: 1px solid black;
+}
+
+.BackBtn{
+    position: absolute;
+    top: -190px;
+    width: 140px;
 }
 
 .PreferencesForm{
