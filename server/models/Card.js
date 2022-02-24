@@ -28,10 +28,8 @@ const cardSchema = new Schema({
     ],
 
     selectedLayoutField: {
-        type: Int,
+        type: Number,
     }
-
-
 });
 
 const Card = model('Card', cardSchema);
