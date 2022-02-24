@@ -32,7 +32,7 @@ const PreferencesForm = ({compClass, compProp, compValue, compIndex, SetProp}) =
     return false; //False
   };
 
-  useEffect(() => {
+  useEffect((compClass, compProp, currentVal) => {
     changeValue(compClass, compProp, currentVal)
   }, [currentVal])
 
