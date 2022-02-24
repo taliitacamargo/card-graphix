@@ -10,6 +10,8 @@
     display: inline-block;
     color: black;
     margin-left: 0px;
+    margin-top: 20px;
+    font-size: 15px;
   }
   
   input {
@@ -24,6 +26,8 @@
   
   #submit {
     width: 100px;
+
+  
   }
   
   #submit-confirm {
@@ -31,4 +35,5 @@
     color:black;
     width: 100%;
     text-align: center;
+    
   }
