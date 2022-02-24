@@ -32,7 +32,7 @@
 //     event.preventDefault();
 
 //     try{
-//         const{data} = await addCard({
+//         const{data} = await addCard({ 
 //             variables: {
 //                 cardId
 //             },
