@@ -42,6 +42,7 @@ let initialState = [
         left: "52%",
         top: "5%",
         fontSize: "20px",
+        color: "black",
       },
     ],
     [
@@ -51,6 +52,7 @@ let initialState = [
         left: "52%",
         top: "16%",
         fontSize: "11px",
+        color: "black",
       },
     ],
     [
@@ -59,6 +61,7 @@ let initialState = [
       {
         right: "4%",
         top: "33%",
+        color: "black",
       },
     ],
     [
@@ -67,6 +70,7 @@ let initialState = [
       {
         right: "4%",
         top: "38%",
+        color: "black",
       },
     ],
     [
@@ -75,6 +79,7 @@ let initialState = [
       {
         right: "4%",
         top: "53%",
+        color: "black",
       },
     ],
     [
@@ -83,6 +88,7 @@ let initialState = [
       {
         right: "4%",
         top: "58%",
+        color: "black",
       },
     ],
     [
@@ -91,6 +97,7 @@ let initialState = [
       {
         right: "4%",
         top: "73%",
+        color: "black",
       },
     ],
     [
@@ -99,6 +106,7 @@ let initialState = [
       {
         right: "4%",
         top: "78%",
+        color: "black",
       },
     ],
   ],
@@ -132,6 +140,7 @@ let initialState = [
         fontSize: "20px",
         left: "12%",
         top: "55%",
+        color: "black",
       }
     ],
     [
@@ -141,6 +150,7 @@ let initialState = [
         fontSize: "11px",
         left: "12%",
         top: "65%",
+        color: "black",
       }
     ],
     [
@@ -149,6 +159,7 @@ let initialState = [
       {
         right: "4%",
         top: "60%",
+        color: "black",
       },
     ],
     [
@@ -157,6 +168,7 @@ let initialState = [
       {
         right: "4%",
         top: "55%",
+        color: "black",
       },
     ],
 
@@ -166,6 +178,7 @@ let initialState = [
       {
         right: "4%",
         top: "75%",
+        color: "black",
       },
     ],
     [
@@ -174,6 +187,7 @@ let initialState = [
       {
         right: "4%",
         top: "80%",
+        color: "black",
       },
     ],
   ],
@@ -186,6 +200,7 @@ let initialState = [
         top: "15%",
         fontSize: "17px",
         zIndex: "2",
+        color: "white",
       },
     ],
 
@@ -197,6 +212,7 @@ let initialState = [
         top: "25%",
         fontSize: "11px",
         zIndex: "1",
+        color: "black",
       },
     ],
     [
@@ -223,39 +239,129 @@ let initialState = [
 
       },
     ],
-  [
-    "+1 412-111-1111",
-    "Primary Phone",
-    {
-      right: "44%",
-      top: "60%",
-    },
+    [
+      "+1 412-111-1111",
+      "Primary Phone",
+      {
+        right: "44%",
+        top: "60%",
+        color: "black",
+      },
+    ],
+    [
+      "user56@hotmail.com",
+      "Email",
+      {
+        right: "39%",
+        top: "65%",
+        color: "black",
+      },
+    ],
+    [
+      "83 Park Place",
+      "Primary Address",
+      {
+        right: "43%",
+        top: "80%",
+        color: "black",
+      },
+    ],
+    [
+      "22 Atlantic Avenue",
+      "Secondary Address",
+      {
+        right: "40.7%",
+        top: "85%",
+        color: "black",
+      },
+    ],
   ],
   [
-    "user56@hotmail.com",
-    "Email",
-    {
-      right: "39%",
-      top: "65%",
-    },
+    [
+      "",
+      "Background",
+      {
+        height: "100%",
+        width: "100%",
+        backgroundColor: "darkblue",
+        left: "0%",
+        top: "0%",
+
+      },
+    ],
+    [
+      "Mac Jones",
+      "Name",
+      {
+        left: "36%",
+        top: "35%",
+        fontSize: "17px",
+        color: "white",
+        zIndex: "2",
+        
+      },
+    ],
+    [
+      "FullStack Developer",
+      "Title",
+      {
+        left: "33%",
+        top: "45%",
+        fontSize: "11px",
+        color: "white",
+        zIndex: "1",
+      },
+    ],
+    [
+      "",
+      "Logo",
+      {
+        height: "2in",
+        width: "3.5in",
+        left: "0%",
+        top: "0%",
+        backgroundColor: "",
+        zIndex: "0",
+      },
+    ],
+  
+    [
+      "+1 412-111-1111",
+      "Primary Phone",
+      {
+        right: "70%",
+        top: "75%",
+        color: "white",
+      },
+    ],
+    [
+      "user56@hotmail.com",
+      "Email",
+      {
+        right: "70%",
+        top: "81%",
+        color: "white",
+      },
+    ],
+    [
+      "1223 Sandmeyer Ln",
+      "Primary Address",
+      {
+        right: "5%",
+        top: "75%",
+        color: "white",
+      },
+    ],
+    [
+      "Philadelphia, PA 19115",
+      "Secondary Address",
+      {
+        right: "5%",
+        top: "81%",
+        color: "white",
+      },
+    ],
   ],
-  [
-    "83 Park Place",
-    "Primary Address",
-    {
-      right: "43%",
-      top: "80%",
-    },
-  ],
-  [
-    "22 Atlantic Avenue",
-    "Secondary Address",
-    {
-      right: "40.7%",
-      top: "85%",
-    },
-  ],
-],
 ];
 
 /*<div className={classname} style={{style}}>Value</div>*/
