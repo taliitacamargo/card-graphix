@@ -15,7 +15,7 @@ const componentSchema = new Schema({
         type: String,
     },
     compStyle: {
-        type: String,
+        type: Object,
     },
 
 });
