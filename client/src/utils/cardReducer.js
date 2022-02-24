@@ -102,6 +102,160 @@ let initialState = [
       },
     ],
   ],
+  [
+    [
+      "",
+      "Background",
+      {
+        height: "50%",
+        width: "100%",
+        backgroundColor: "lightgreen",
+        left: "0%",
+        top: "0%",
+      },
+    ],
+    [
+      "",
+      "Logo",
+      {
+        height: ".99in",
+        width: "1in",
+        left: "0%",
+        top: "0%",
+        backgroundColor: "",
+      },
+    ],
+    [
+      "John Doe",
+      "Name",
+      {
+        fontSize: "20px",
+        left: "12%",
+        top: "55%",
+      }
+    ],
+    [
+      "FullStack Developer",
+      "Title",
+      {
+        fontSize: "11px",
+        left: "12%",
+        top: "65%",
+      }
+    ],
+    [
+      "+1 412-111-1111",
+      "Primary Phone",
+      {
+        right: "4%",
+        top: "60%",
+      },
+    ],
+    [
+      "user56@hotmail.com",
+      "Email",
+      {
+        right: "4%",
+        top: "55%",
+      },
+    ],
+
+    [
+      "83 Park Place",
+      "Primary Address",
+      {
+        right: "4%",
+        top: "75%",
+      },
+    ],
+    [
+      "22 Atlantic Avenue",
+      "Secondary Address",
+      {
+        right: "4%",
+        top: "80%",
+      },
+    ],
+  ],
+  [
+    [
+      "Mac Jones",
+      "Name",
+      {
+        left: "10%",
+        top: "15%",
+        fontSize: "17px",
+        zIndex: "2",
+      },
+    ],
+
+    [
+      "FullStack Developer",
+      "Title",
+      {
+        left: "7%",
+        top: "25%",
+        fontSize: "11px",
+        zIndex: "1",
+      },
+    ],
+    [
+      "",
+      "Logo",
+      {
+        height: ".99in",
+        width: "1.8in",
+        left: "50%",
+        top: "0%",
+        backgroundColor: "",
+
+      },
+    ],
+    [
+      "",
+      "Background",
+      {
+        height: "50%",
+        width: "50%",
+        backgroundColor: "lightblue",
+        left: "0%",
+        top: "0%",
+
+      },
+    ],
+  [
+    "+1 412-111-1111",
+    "Primary Phone",
+    {
+      right: "44%",
+      top: "60%",
+    },
+  ],
+  [
+    "user56@hotmail.com",
+    "Email",
+    {
+      right: "39%",
+      top: "65%",
+    },
+  ],
+  [
+    "83 Park Place",
+    "Primary Address",
+    {
+      right: "43%",
+      top: "80%",
+    },
+  ],
+  [
+    "22 Atlantic Avenue",
+    "Secondary Address",
+    {
+      right: "40.7%",
+      top: "85%",
+    },
+  ],
+],
 ];
 
 /*<div className={classname} style={{style}}>Value</div>*/
