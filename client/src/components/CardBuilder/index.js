@@ -5,8 +5,8 @@ import Pdf from "./pdf"
 import PreferencesForm from "../PreferencesForm";
 import Cloudinary from '../Cloudinary';
 
-import { useMutation } from '@apollo/client';
-import { CREATE_CARD } from '../../utils/mutations';
+// import { useMutation } from '@apollo/client';
+// import { CREATE_CARD } from '../../utils/mutations';
 
 import './card.css';
 
