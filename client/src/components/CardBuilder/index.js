@@ -7,7 +7,7 @@ import Cloudinary from '../Cloudinary';
 
 import './card.css';
 
-import {transparent, layout0, layout1, layout3, layout4} from "../../assets/index.js";
+import {transparent, layout0, layout1, layout3, layout4, layout5} from "../../assets/index.js";
 
 const CardBuilder = () => {
   const [state, dispatch] = useCardReducer();
@@ -32,7 +32,7 @@ const CardBuilder = () => {
   }
 
   /* LAYOUT SELECTOR */
-  const layoutImages = [layout0, layout1, layout3, layout4];
+  const layoutImages = [layout0, layout1, layout3, layout4,layout5];
 
   const SelectDefault = (event) => {
     event.preventDefault();
