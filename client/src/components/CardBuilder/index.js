@@ -8,6 +8,8 @@ import Cloudinary from '../Cloudinary';
 import { useMutation } from '@apollo/client';
 import { CREATE_CARD } from '../../utils/mutations';
 
+import Auth from '../../utils/auth';
+
 import './card.css';
 
 import {transparent, layout0, layout1} from "../../assets/index.js";
@@ -128,6 +130,14 @@ const CardBuilder = () => {
     }
   }
 
+  const SaveBtn = () => {
+    if(selectedLayout !== 0 && Auth.loggedIn()){
+      return <button>Save Card</button>;
+    } else {
+      return <></>
+    }
+  }
+
   /* useEffect Pipeline */
   useEffect(() => {
     setCurrentLayout(state[selectedLayout]);
@@ -171,6 +181,7 @@ const CardBuilder = () => {
         </div>
       </div>
       {UtilityButtons()}
+      {SaveBtn()}
     </div>
   );
 };
