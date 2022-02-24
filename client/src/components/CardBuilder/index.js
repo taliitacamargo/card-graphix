@@ -23,9 +23,9 @@ const CardBuilder = () => {
   const SetProp = (prop, value) => { //Called from preferences form when field is changed
     if(prop === 'textContent' && compValue !== value){
       setCompValue(value);
-    } else if(compProps[prop] && compProps[prop] !== value){
+    } else if(prop !== 'textContent' && compProps[prop] !== value){
       let tempProps = {...compProps};
-      tempProps[prop] = value;
+      tempProps[prop] = value; //Does not update value if its blank
       setCompProps(tempProps);
     }
   }
@@ -37,7 +37,7 @@ const CardBuilder = () => {
       return <></>;
     } else {
       let tempKey = "layout" + i;
-      return <button key={tempKey} onClick={(e) => (e.preventDefault, setSelectedLayout(i))}><img src={item}></img></button>;
+      return <button key={tempKey} onClick={(e) => (e.preventDefault, setSelectedLayout(i))}><img src={item} ></img></button>;
     }
   }
 
@@ -62,7 +62,7 @@ const CardBuilder = () => {
   
   /* PREFERENCES EDITOR */
   const BuildPreferences = (item, value, index) => {
-    if(item === "textContent" && value === ""){
+    if(item === "textContent" && (compClass === 'Logo' || compClass === 'Background')){
       return <div></div>
     }
     let tempObj = { compClass: compClass, compProp: item, compValue: value, compIndex: index, SetProp: SetProp};
