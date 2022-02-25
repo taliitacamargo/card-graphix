@@ -132,9 +132,22 @@ const CardBuilder = () => {
 
   const [createCard, { error, data }] = useMutation(CREATE_CARD);
 
+  const SaveCard = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await createCard({
+        variables: [...currentLayout],
+      });
+
+      console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   const SaveBtn = () => {
     if(selectedLayout !== 0 && Auth.loggedIn()){
-      return <button>Save Card</button>;
+      return <button onClick={(e) => SaveCard(e)}>Save Card</button>;
     } else {
       return <></>
     }
