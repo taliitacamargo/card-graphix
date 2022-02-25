@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="container text-center mb-5" >
+      <div className="footer-container" >
         <h4>&copy; {new Date().getFullYear()} Card Graphix. All rights reserved. &nbsp;</h4>
         <Link to="/contact-us">Contact Us</Link>
       </div>

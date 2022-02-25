@@ -49,6 +49,7 @@ h3 {
 }
 .steps {
     display: flex;
+
 }
 
 
@@ -102,6 +103,24 @@ p {
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+
+  @media screen and (max-width: 600px) {
+    .wrapper {
+        height: auto;
+    }
+    .inner-wrapper {
+        max-width: 90vw;
+        text-align: center;
+   
+    }
+    .steps {
+        flex-direction: column;
+        text-align: center;
+
+    }
+  
+  }
+
 
 
 
