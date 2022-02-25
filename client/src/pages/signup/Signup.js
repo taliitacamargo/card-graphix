@@ -9,7 +9,6 @@ import './signup.css';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    name: '',
     email: '',
     password: '',
   });

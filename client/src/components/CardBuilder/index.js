@@ -12,7 +12,7 @@ import Auth from '../../utils/auth';
 
 import './card.css';
 
-import {transparent, layout0, layout1, layout3, layout4, layout5} from "../../assets/index.js";
+import {transparent, layout0, layout1, layout2, layout3, layout4} from "../../assets/index.js";
 
 const CardBuilder = () => {
   const [state, dispatch] = useCardReducer();
@@ -37,7 +37,7 @@ const CardBuilder = () => {
   }
 
   /* LAYOUT SELECTOR */
-  const layoutImages = [layout0, layout1, layout3, layout4,layout5];
+  const layoutImages = [layout0, layout1, layout2, layout3, layout4];
 
   const SelectDefault = (event) => {
     event.preventDefault();
@@ -54,7 +54,7 @@ const CardBuilder = () => {
     if(selectedLayout !== 0 && i === 0){
       let tempKey = "select" + i;
       return <button className="BackBtn" key={tempKey} onClick={(e) => SelectDefault(e)}>« Select Layout</button>;
-    } else if(selectedLayout !== 0){
+    } else if(selectedLayout !== 0 || i==0){ //Used if a layout is selected or if item==layout0
       let tempKey = "frag" + i;
       return <Frag key={tempKey} />;
     } else {
@@ -129,6 +129,8 @@ const CardBuilder = () => {
       </div>
     }
   }
+
+  const [createCard, { error, data }] = useMutation(CREATE_CARD);
 
   const SaveBtn = () => {
     if(selectedLayout !== 0 && Auth.loggedIn()){
