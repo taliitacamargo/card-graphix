@@ -15,7 +15,7 @@ const exportPdf = () => {
         useCORS: true,
         scale: 2,
         }).then(canvas => {
-        document.body.appendChild(canvas);
+        //document.body.appendChild(canvas);
         const img = canvas.toDataURL('image/png');
         doc.addImage(img, 'PNG', 0, 0, width, height);
         // to add a new page to the pdf file
