@@ -109,6 +109,18 @@ input {
     margin-top: 10px;
 }
 
+.UtilityButtons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.SaveBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 @keyframes shadowCircle {
     0% {box-shadow: 1px 1px;}
     25% {box-shadow: 1px -1px;}

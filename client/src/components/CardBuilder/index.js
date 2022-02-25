@@ -123,7 +123,7 @@ const CardBuilder = () => {
     if(selectedLayout === 0){
       return <></>
     } else {
-      return <div>
+      return <div id="util-buttons">
         <Pdf key={"exportBtn"}/>
         <Cloudinary key={"uploadBtn"} SetLogo={SetLogo}/>
       </div>
@@ -183,9 +183,13 @@ const CardBuilder = () => {
         <div className="LayoutSelector">
           {layoutSelector}
         </div>
+        <div className="UtilityButtons">
+          {UtilityButtons()}
+        </div>
+        <div className="SaveBtn">
+          {SaveBtn()}
+        </div>
       </div>
-      {UtilityButtons()}
-      {SaveBtn()}
     </div>
   );
 };
