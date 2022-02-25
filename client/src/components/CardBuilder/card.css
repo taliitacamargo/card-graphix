@@ -115,9 +115,37 @@ input {
     margin-top: 10px;
 }
 
+.SaveBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 @keyframes shadowCircle {
     0% {box-shadow: 1px 1px;}
     25% {box-shadow: 1px -1px;}
     50% {box-shadow: -1px -1px;}
     75% {box-shadow: -1px 1px;}
 }
+
+/* media query to make portfolio images take up full width on small screens */
+@media screen and (max-width: 700px) {
+.LayoutSelector{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.LayoutBtn{
+    width: 40%;
+    margin: 3px;
+}
+
+.LayoutBtn img{
+    width: 100%;
+    margin: 1px;
+    border: 1px solid black;
+}
+    }
