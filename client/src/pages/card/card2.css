@@ -3,9 +3,11 @@
     justify-content: center;
     align-items: center;
     color: black;
-    margin-top: 60px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.header {
+p.header {
     color: black;
+    margin: 0px;
 }

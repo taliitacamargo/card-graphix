@@ -1,10 +1,10 @@
 let compArray = [
   [
     [
-      "Select A Layout To Get Started",
+      "Select A Layout Below To Get Started",
       "SampleText",
       {
-        left: "12%",
+        left: "3%",
         top: "45%",
         fontSize: "17px",
       }
