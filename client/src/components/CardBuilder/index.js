@@ -53,7 +53,7 @@ const CardBuilder = () => {
   const CreateLayoutSelector = (item, i) => {
     if(selectedLayout !== 0 && i === 0){
       let tempKey = "select" + i;
-      return <button className="BackBtn" key={tempKey} onClick={(e) => SelectDefault(e)}>« Select Layout</button>;
+      return <button className="BackBtn btn btn-primary" key={tempKey} onClick={(e) => SelectDefault(e)}>« Select Layout</button>;
     } else if(selectedLayout !== 0 || i===0){ //Used if a layout is selected or if item==layout0
       let tempKey = "frag" + i;
       return <Frag key={tempKey} />;
@@ -184,7 +184,7 @@ const CardBuilder = () => {
 
   const SaveButton = () => {
     if(selectedLayout !== 0 && Auth.loggedIn()){
-      return <button onClick={(e) => SaveCard(e)}>Save Card</button>;
+      return <button className="btn btn-primary" onClick={(e) => SaveCard(e)}>Save Card</button>;
     } else {
       return <></>
     }
@@ -222,13 +222,15 @@ const CardBuilder = () => {
         </div>
         <div className="UtilityTools">
           {layoutSelector}
-          {ExportButton()}
           {UploadImageBtn()}
-          {SaveButton()}
         </div>
         <div className="BuildTools">
           {CompButtons()}
           {Preferences()}
+        </div>
+        <div className="SaveTools">
+        {SaveButton()}
+        {ExportButton()}
         </div>
       </div>
     </div>
