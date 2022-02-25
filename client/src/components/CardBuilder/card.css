@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .CardView{
@@ -37,7 +38,7 @@
     z-index: 6;
 }
 
-.LayoutSelector{
+.UtilityTools{
     display: flex;
     flex-direction: row;
     margin: 10px 0px;
@@ -45,8 +46,13 @@
     justify-content: center;
 }
 
+.UtilityBtns{
+    display: flex;
+    flex-direction: row;
+}
+
 .LayoutBtn{
-    width: 3.5in;
+    width: 1.5in;
     margin: 3px;
 }
 

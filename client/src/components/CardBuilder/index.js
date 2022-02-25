@@ -54,7 +54,7 @@ const CardBuilder = () => {
     if(selectedLayout !== 0 && i === 0){
       let tempKey = "select" + i;
       return <button className="BackBtn" key={tempKey} onClick={(e) => SelectDefault(e)}>« Select Layout</button>;
-    } else if(selectedLayout !== 0 || i==0){ //Used if a layout is selected or if item==layout0
+    } else if(selectedLayout !== 0 || i===0){ //Used if a layout is selected or if item==layout0
       let tempKey = "frag" + i;
       return <Frag key={tempKey} />;
     } else {
@@ -123,7 +123,7 @@ const CardBuilder = () => {
     if(selectedLayout === 0){
       return <></>
     } else {
-      return <div>
+      return <div className="UtilityBtns">
         <Pdf key={"exportBtn"}/>
         <Cloudinary key={"uploadBtn"} SetLogo={SetLogo}/>
       </div>
@@ -135,11 +135,11 @@ const CardBuilder = () => {
   const SaveCard = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await createCard({
+      const { data, error } = await createCard({
         variables: [...currentLayout],
       });
 
-      console.log(data);
+      console.log(error);
     } catch (e) {
       console.error(e);
     }
@@ -183,6 +183,12 @@ const CardBuilder = () => {
         <div className="CardView">
           {cardComps}
         </div>
+        <div className="UtilityTools">
+          {layoutSelector}
+          {UtilityButtons()}
+          {SaveBtn()}
+
+        </div>
         <div className="BuildTools">
           <div className="ComponentButtons">
             {componentButtons}
@@ -193,12 +199,7 @@ const CardBuilder = () => {
             {preferences}
           </div>
         </div>
-        <div className="LayoutSelector">
-          {layoutSelector}
-        </div>
       </div>
-      {UtilityButtons()}
-      {SaveBtn()}
     </div>
   );
 };
