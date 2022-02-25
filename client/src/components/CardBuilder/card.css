@@ -21,7 +21,6 @@
     overflow: hidden;
 }
 
-
 .CardView .Background{
     position: absolute;
     z-index: 1;
@@ -47,7 +46,7 @@
 }
 
 .LayoutBtn{
-    width: 1.5in;
+    width: 2.5in;
     margin: 3px;
 }
 
@@ -87,14 +86,17 @@
     text-align: center;
 }
 
-input {
+.PreferencesForm input {
     text-align: center;
     margin: auto;
 }
 
 .ComponentButtons{
-    display:grid;
+    background-color: lightgrey;
     margin-right: 2px;
+    width: 190px;
+    display: flex;
+    flex-direction: column;
 }
 
 .ComponentButtons > button{
@@ -134,7 +136,7 @@ input {
 }
 
 .LayoutBtn{
-    width: 40%;
+    width: 48%;
     margin: 3px;
 }
 
