@@ -4,6 +4,8 @@ import "./header.css"
 import Auth from '../../utils/auth';
 import { motion } from "framer-motion";
 
+
+
 const Header = () => {
   const logout = (event) => {
     event.preventDefault();
@@ -40,6 +42,7 @@ const Header = () => {
               Signup
             </Link>
             </motion.div>
+            
           </>
         )}
     </div>
