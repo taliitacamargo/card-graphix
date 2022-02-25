@@ -106,8 +106,8 @@ const CardBuilder = () => {
     }
     else{
       return( 
-      <div className="PreferencesForm">
-        <div>compClass</div>
+      <div className="PreferencesForm FormHolder">
+        <div>{compClass}</div>
         {textEdit}
         {preferences}
       </div>);
@@ -132,6 +132,19 @@ const CardBuilder = () => {
     BuildCompButton(item, i)
   ));
 
+  const CompButtons = () => {
+    if(selectedLayout === 0){
+      return <></>;
+    }
+    else{
+      return( 
+        <div className="ComponentButtons FormHolder">
+          <div>Components</div>
+        {componentButtons}
+      </div>);
+    }  
+  }
+
   const SetLogo = (path) => {
     setCurrentLogo(path);
   };
@@ -152,16 +165,18 @@ const CardBuilder = () => {
     }
   }
 
+  /* Save Card Button */
   const [createCard, { error, data }] = useMutation(CREATE_CARD);
 
   const SaveCard = async (event) => {
     event.preventDefault();
     try {
+      let id = Auth.getProfile()['data']['_id'];
+      console.log(id);
       const { data, error } = await createCard({
-        variables: [...currentLayout],
+        variables: [id, currentLogo ,[...currentLayout]],
       });
-
-      console.log(error);
+      console.log(data);
     } catch (e) {
       console.error(e);
     }
@@ -212,9 +227,7 @@ const CardBuilder = () => {
           {SaveButton()}
         </div>
         <div className="BuildTools">
-          <div className="ComponentButtons">
-            {componentButtons}
-          </div>
+          {CompButtons()}
           {Preferences()}
         </div>
       </div>
