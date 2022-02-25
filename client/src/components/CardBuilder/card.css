@@ -19,6 +19,7 @@
     border: 1px black;
     border-style: solid;
     overflow: hidden;
+    
 }
 
 .CardView .Background{
@@ -43,6 +44,7 @@
     margin-top: 10px;
     flex-wrap: wrap;
     justify-content: center;
+  
 }
 
 .btn {
