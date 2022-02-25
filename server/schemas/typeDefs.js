@@ -1,6 +1,12 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  type Secretkeys {
+    cloudinary_cloud_name: String
+    cloudinary_upload_preset: String
+    google_api_key: String
+  }
+
   type Profile {
     _id: ID
     email: String
@@ -33,6 +39,7 @@ const typeDefs = gql`
     cards(name: String) : [Card]
     card(cardId: ID!) : Card
     me: Profile
+    secretkeys: Secretkeys
   }
 
   type Mutation {

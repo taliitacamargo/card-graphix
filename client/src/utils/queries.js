@@ -1,5 +1,15 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_SECRET_KEYS = gql`
+  query secretkeys {
+    secretkeys {
+      cloudinary_cloud_name
+      cloudinary_upload_preset
+      google_api_key
+    }
+  }
+`;
+
 export const QUERY_PROFILES = gql`
   query allProfiles {
     profiles {
