@@ -45,11 +45,6 @@
     justify-content: center;
 }
 
-.UtilityBtns{
-    display: flex;
-    flex-direction: row;
-}
-
 .LayoutBtn{
     width: 2.5in;
     margin: 3px;
@@ -132,7 +127,7 @@
 
 /* media query to make portfolio images take up full width on small screens */
 @media screen and (max-width: 700px) {
-.LayoutSelector{
+.UtilityTools{
     display: flex;
     flex-direction: row;
     margin: 10px 0px;

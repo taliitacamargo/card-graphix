@@ -84,6 +84,9 @@ const CardBuilder = () => {
   /* PREFERENCES EDITOR */
   const BuildPreferences = (item, value, index) => {
     let tempKey = "pref" + index;
+    if(selectedLayout === 0){
+      return <Frag key={tempKey}/>
+    }
     if(item === "textContent" && (compClass === 'Logo' || compClass === 'Background')){
       return <Frag key={tempKey} />
     }
@@ -96,6 +99,20 @@ const CardBuilder = () => {
   const preferences = Object.keys(compProps).map((item, i) => (
     BuildPreferences(item, compProps[item], (i + 1))
   ));
+
+  const Preferences = () => {
+    if(selectedLayout === 0){
+      return <></>;
+    }
+    else{
+      return( 
+      <div className="PreferencesForm">
+        <div>compClass</div>
+        {textEdit}
+        {preferences}
+      </div>);
+    }  
+  }
   
   /* COMPONENT BUTTONS */
   const BuildCompButton = (item, i) => {
@@ -119,14 +136,19 @@ const CardBuilder = () => {
     setCurrentLogo(path);
   };
 
-  const UtilityButtons = () => {
+  const ExportButton = () => {
     if(selectedLayout === 0){
       return <></>
     } else {
-      return <div className="UtilityBtns">
-        <Pdf key={"exportBtn"}/>
-        <Cloudinary key={"uploadBtn"} SetLogo={SetLogo}/>
-      </div>
+      return <Pdf key={"exportBtn"}/>
+    }
+  }
+
+  const UploadImageBtn = () => {
+    if(selectedLayout === 0){
+      return <></>
+    } else {
+      return <Cloudinary key={"uploadBtn"} SetLogo={SetLogo}/>
     }
   }
 
@@ -145,7 +167,7 @@ const CardBuilder = () => {
     }
   }
 
-  const SaveBtn = () => {
+  const SaveButton = () => {
     if(selectedLayout !== 0 && Auth.loggedIn()){
       return <button onClick={(e) => SaveCard(e)}>Save Card</button>;
     } else {
@@ -185,19 +207,15 @@ const CardBuilder = () => {
         </div>
         <div className="UtilityTools">
           {layoutSelector}
-          {UtilityButtons()}
-          {SaveBtn()}
-
+          {ExportButton()}
+          {UploadImageBtn()}
+          {SaveButton()}
         </div>
         <div className="BuildTools">
           <div className="ComponentButtons">
             {componentButtons}
           </div>
-          <div className="PreferencesForm">
-            <div>{compClass}</div>
-            {textEdit}
-            {preferences}
-          </div>
+          {Preferences()}
         </div>
       </div>
     </div>
