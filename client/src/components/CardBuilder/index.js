@@ -170,13 +170,15 @@ const CardBuilder = () => {
         <div className="CardView">
           {cardComps}
         </div>
-        <div className="ComponentButtons">
-          {componentButtons}
-        </div>
-        <div className="PreferencesForm">
-          <div>{compClass}</div>
-          {textEdit}
-          {preferences}
+        <div className="BuildTools">
+          <div className="ComponentButtons">
+            {componentButtons}
+          </div>
+          <div className="PreferencesForm">
+            <div>{compClass}</div>
+            {textEdit}
+            {preferences}
+          </div>
         </div>
         <div className="LayoutSelector">
           {layoutSelector}

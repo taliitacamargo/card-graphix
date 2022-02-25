@@ -1,11 +1,8 @@
 .CardPage{
-    width: 80vw;
-    height: 60vh;
     display: flex;
     align-items: center;
-    align-content: center;
     justify-content: center;
-    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .CardView{
@@ -36,14 +33,15 @@
 }
 
 .LayoutSelector{
-    position: absolute;
     display: flex;
-    flex-direction: column;
-    left: 10vw;
+    flex-direction: row;
+    margin: 10px 0px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .LayoutBtn{
-    width: 35%;
+    width: 3.5in;
     margin: 3px;
 }
 
@@ -53,28 +51,57 @@
     border: 1px solid black;
 }
 
-.BackBtn{
-    position: absolute;
-    top: -190px;
-    width: 140px;
+.PreferencesForm{
+    background-color: lightgrey;
+    margin-left: 2px;
+    width: 190px;
+    padding: 5px 0px;
 }
 
-.PreferencesForm{
-    position: relative;
-    background-color: lightgrey;
-    padding: 1%;
-    margin: 1%;
+.PreferencesForm div{
+    text-align: center;
+    font-size: 18px;
+    text-decoration: underline;
+    font-weight: 900;
+}
+
+.PreferencesForm label{
+    font-size: 16px;
+    margin: 2px 0px 0px 0px;
+}
+
+.PreferencesForm input{
+    font-size: 14px;
+    width: 90%;
 }
 
 .PreferencesForm form{
     display: flex;
     flex-direction: column;
+    text-align: center;
+}
+
+input {
+    text-align: center;
+    margin: auto;
 }
 
 .ComponentButtons{
-    position: absolute;
     display:grid;
-    left: 10vw;
+    margin-right: 2px;
+}
+
+.ComponentButtons > button{
+    height: 24px;
+    font-size: 14px;
+}
+
+.BuildTools {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
 
 @keyframes shadowCircle {
@@ -83,19 +110,3 @@
     50% {box-shadow: -1px -1px;}
     75% {box-shadow: -1px 1px;}
 }
-
-@media only screen and (min-width: 750px) {
-    .CardPage{
-        flex-direction: row;
-    }
-
-    .CardView{
-        position: absolute;
-    }
-
-    .PreferencesForm{
-        position: absolute;
-        width: 18vw;
-        right: 10vw;
-    }
-  }
