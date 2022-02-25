@@ -54,7 +54,7 @@ const CardBuilder = () => {
     if(selectedLayout !== 0 && i === 0){
       let tempKey = "select" + i;
       return <button className="BackBtn" key={tempKey} onClick={(e) => SelectDefault(e)}>« Select Layout</button>;
-    } else if(selectedLayout !== 0 || i==0){ //Used if a layout is selected or if item==layout0
+    } else if(selectedLayout !== 0 || i===0){ //Used if a layout is selected or if item==layout0
       let tempKey = "frag" + i;
       return <Frag key={tempKey} />;
     } else {
@@ -84,6 +84,9 @@ const CardBuilder = () => {
   /* PREFERENCES EDITOR */
   const BuildPreferences = (item, value, index) => {
     let tempKey = "pref" + index;
+    if(selectedLayout === 0){
+      return <Frag key={tempKey}/>
+    }
     if(item === "textContent" && (compClass === 'Logo' || compClass === 'Background')){
       return <Frag key={tempKey} />
     }
@@ -96,6 +99,20 @@ const CardBuilder = () => {
   const preferences = Object.keys(compProps).map((item, i) => (
     BuildPreferences(item, compProps[item], (i + 1))
   ));
+
+  const Preferences = () => {
+    if(selectedLayout === 0){
+      return <></>;
+    }
+    else{
+      return( 
+      <div className="PreferencesForm">
+        <div>compClass</div>
+        {textEdit}
+        {preferences}
+      </div>);
+    }  
+  }
   
   /* COMPONENT BUTTONS */
   const BuildCompButton = (item, i) => {
@@ -119,22 +136,40 @@ const CardBuilder = () => {
     setCurrentLogo(path);
   };
 
-  const UtilityButtons = () => {
+  const ExportButton = () => {
     if(selectedLayout === 0){
       return <></>
     } else {
-      return <div>
-        <Pdf key={"exportBtn"}/>
-        <Cloudinary key={"uploadBtn"} SetLogo={SetLogo}/>
-      </div>
+      return <Pdf key={"exportBtn"}/>
+    }
+  }
+
+  const UploadImageBtn = () => {
+    if(selectedLayout === 0){
+      return <></>
+    } else {
+      return <Cloudinary key={"uploadBtn"} SetLogo={SetLogo}/>
     }
   }
 
   const [createCard, { error, data }] = useMutation(CREATE_CARD);
 
-  const SaveBtn = () => {
+  const SaveCard = async (event) => {
+    event.preventDefault();
+    try {
+      const { data, error } = await createCard({
+        variables: [...currentLayout],
+      });
+
+      console.log(error);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  const SaveButton = () => {
     if(selectedLayout !== 0 && Auth.loggedIn()){
-      return <button>Save Card</button>;
+      return <button onClick={(e) => SaveCard(e)}>Save Card</button>;
     } else {
       return <></>
     }
@@ -170,22 +205,19 @@ const CardBuilder = () => {
         <div className="CardView">
           {cardComps}
         </div>
+        <div className="UtilityTools">
+          {layoutSelector}
+          {ExportButton()}
+          {UploadImageBtn()}
+          {SaveButton()}
+        </div>
         <div className="BuildTools">
           <div className="ComponentButtons">
             {componentButtons}
           </div>
-          <div className="PreferencesForm">
-            <div>{compClass}</div>
-            {textEdit}
-            {preferences}
-          </div>
-        </div>
-        <div className="LayoutSelector">
-          {layoutSelector}
+          {Preferences()}
         </div>
       </div>
-      {UtilityButtons()}
-      {SaveBtn()}
     </div>
   );
 };
