@@ -2,8 +2,18 @@ const { AuthenticationError } = require('apollo-server-express');
 const { Profile, Card, Component } = require('../models');
 const { signToken } = require('../utils/auth');
 
+
+
 const resolvers = {
   Query: {
+    secretkeys: async () => {
+      return (
+        {cloudinary_cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+          cloudinary_upload_preset: process.env.CLOUDINARY_UPLOAD_PRESET,
+          google_api_key: process.env.GOOGLE_API_KEY
+        }
+      )
+    },
     profiles: async () => {
       return Profile.find();
     },
@@ -31,8 +41,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
+    addProfile: async (parent, { email, password }) => {
+      const profile = await Profile.create({ email, password });
       const token = signToken(profile);
 
       return { token, profile };

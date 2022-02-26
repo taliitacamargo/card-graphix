@@ -1,147 +1,218 @@
 import React, { useEffect, useState } from "react";
-
+import { useCardReducer } from '../../utils/cardReducer';
+import Frag from '../../utils/componentUtil/frag';
+import Pdf from "./pdf"
 import PreferencesForm from "../PreferencesForm";
+import Cloudinary from '../Cloudinary';
+
+import { useMutation } from '@apollo/client';
+import { CREATE_CARD } from '../../utils/mutations';
+
+import Auth from '../../utils/auth';
 
 import './card.css';
 
-const CardBuilder = () => {
-  const [selectedComp, setSelectedComp] = useState(3);
-  const [compName, setCompName] = useState("Please Select A Coponent");
-  const [currentProps, setCurrentProps] = useState([]);
+import {transparent, layout0, layout1, layout2, layout3, layout4} from "../../assets/index.js";
 
-  class Component {
-    constructor(compValue, compClass, compStyle) {
-      this.compValue = compValue;
-      this.compClass = compClass;
-      this.compStyle = compStyle;
+const CardBuilder = () => {
+  const [state, dispatch] = useCardReducer();
+  const [selectedLayout, setSelectedLayout] = useState(0);
+  const [currentLayout, setCurrentLayout] = useState(state[selectedLayout]);
+  const [selectedComp, setSelectedComp] = useState(0);
+  const [currentComp, setCurrentComp] = useState(state[selectedLayout][selectedComp]);
+  const [compValue, setCompValue] = useState(state[selectedLayout][selectedComp][0]);
+  const [compClass, setCompClass] = useState(state[selectedLayout][selectedComp][1]);
+  const [compProps, setCompProps] = useState(state[selectedLayout][selectedComp][2]);
+
+  const [currentLogo, setCurrentLogo] = useState(transparent);
+
+  const SetProp = (prop, value) => { //Called from preferences form when field is changed
+    if(prop === 'textContent' && compValue !== value){
+      setCompValue(value);
+    } else if(prop !== 'textContent' && compProps[prop] !== value){
+      let tempProps = {...compProps};
+      tempProps[prop] = value;
+      setCompProps(tempProps);
     }
   }
 
-  let compArray = [
-    new Component(
-      "",
-      "Background",
-      JSON.stringify({
-        height: "100%",
-        width: "45%",
-        backgroundColor: "black",
-        left: "0in",
-        top: "0in",
-      })
-    ),
-    new Component(
-      "",
-      "Logo",
-      JSON.stringify({
-        height: "1in",
-        width: "1in",
-        backgroundColor: "",
-        left: "0.3in",
-        top: "0.5in",
-      })
-    ),
-    new Component(
-      "Mac Jones",
-      "NameValue",
-      JSON.stringify({
-        left: "1.8in",
-        top: "0.1in",
-        fontSize: "20px",
-      })
-    ),
-    new Component(
-      "FullStack Developer",
-      "TitleValue",
-      JSON.stringify({
-        left: "1.8in",
-        top: "0.3in",
-        fontSize: "11px",
-      })
-    ),
-    new Component(
-      "+1 412-111-1111",
-      "Phone1Value",
-      JSON.stringify({
-        right: "0.15in",
-        top: "0.65in",
-      })
-    ),
-    new Component(
-      "+1 412-222-2222",
-      "Phone2Value",
-      JSON.stringify({
-        right: "0.15in",
-        top: "0.75in",
-      })
-    ),
-    new Component(
-      "user56@hotmail.com",
-      "EmailValue",
-      JSON.stringify({
-        right: "0.15in",
-        top: "1.05in",
-      })
-    ),
-    new Component(
-      "user56.github.io/MyPortfolio/",
-      "WebsiteValue",
-      JSON.stringify({
-        right: "0.15in",
-        top: "1.15in",
-      })
-    ),
-    new Component(
-      "83 Park Place",
-      "Address1Value",
-      JSON.stringify({
-        right: "0.15in",
-        top: "1.45in",
-      })
-    ),
-    new Component(
-      "22 Atlantic Avenue",
-      "Address2Value",
-      JSON.stringify({
-        right: "0.15in",
-        top: "1.55in",
-      })
-    ),
-  ];
+  /* LAYOUT SELECTOR */
+  const layoutImages = [layout0, layout1, layout2, layout3, layout4];
 
-  const createPreferenceForm = (comp) => { //Needs to return objects and needs to not call multiple times
-    let parsed = JSON.parse(comp.compStyle);
-    let propForms = [];
-    if(comp.compClass !== "Background" && comp.compClass !== "Logo"){ //Doesnt include textContent for background and logo
-      propForms.push({compClass: comp.compClass, compProp: "textContent", compValue: comp.compValue})
+  const SelectDefault = (event) => {
+    event.preventDefault();
+    setSelectedComp(0);
+    setSelectedLayout(0);
+  }
+
+  const SelectLayout = (event, index) => {
+    event.preventDefault();
+    setSelectedLayout(index);
+  }
+
+  const CreateLayoutSelector = (item, i) => {
+    if(selectedLayout !== 0 && i === 0){
+      let tempKey = "select" + i;
+      return <button className="BackBtn btn btn-primary" key={tempKey} onClick={(e) => SelectDefault(e)}>« Select Layout</button>;
+    } else if(selectedLayout !== 0 || i===0){ //Used if a layout is selected or if item==layout0
+      let tempKey = "frag" + i;
+      return <Frag key={tempKey} />;
+    } else {
+      let tempKey = "layout" + i;
+      return <button className="LayoutBtn" key={tempKey} onClick={(e) => SelectLayout(e, i)}><img src={item} ></img></button>;
     }
+  }
 
-    for (const property in parsed) {
-      propForms.push({compClass: comp.compClass, compProp: property, compValue: parsed[property]}        );
+  const layoutSelector = layoutImages.map((item, i) => CreateLayoutSelector(item, i));
+
+  //dispatch({type: "card-layout", selectedLayout: 0, selectedComp: 0, newValue: ["Micky", "Name", {left: "10%", top: "5%"}]});
+  //console.log(dispatch({type: 'card-layout', selectedLayout: 0, layout: ["new comp", "heyyy", {top: "4%", left: "10%"}]}));
+
+  const CreateCardComp = (item, i) => {
+    let tempKey = "comp" + i;
+    if(item[1] === "Logo"){
+      return <img alt="logo" className={item[1]} style={item[2]} key={tempKey} src={currentLogo}></img>
+    } else {
+      return <div className={item[1]} style={item[2]} key={tempKey}>{item[0]}</div>
     }
-
-    setCurrentProps(propForms);
-    setCompName(comp.compClass);
-    console.log(propForms);
-    return propForms;
   };
 
-  const cardComps = compArray.map((item, i) => (
-    <div className={item.compClass} style={JSON.parse(item.compStyle)} key={i}>
-      {item.compValue}
-    </div>
+  const cardComps = currentLayout.map((item, i) => ( //Fill card with component from compArray[layout]
+    CreateCardComp(item, i)
+  ));
+  
+  /* PREFERENCES EDITOR */
+  const BuildPreferences = (item, value, index) => {
+    let tempKey = "pref" + index;
+    if(selectedLayout === 0){
+      return <Frag key={tempKey}/>
+    }
+    if(item === "textContent" && (compClass === 'Logo' || compClass === 'Background')){
+      return <Frag key={tempKey} />
+    }
+    let tempObj = { compClass: compClass, compProp: item, compValue: value, compIndex: index, SetProp: SetProp};
+    return <PreferencesForm key={tempKey} {...tempObj} />
+  } 
+
+  const textEdit = BuildPreferences("textContent", compValue, 0);
+
+  const preferences = Object.keys(compProps).map((item, i) => (
+    BuildPreferences(item, compProps[item], (i + 1))
   ));
 
-  const preferences = currentProps.map((item, i) => (
-    <PreferencesForm key={i} {...item} />
+  const Preferences = () => {
+    if(selectedLayout === 0){
+      return <></>;
+    }
+    else{
+      return( 
+      <div className="PreferencesForm FormHolder">
+        <div>{compClass}</div>
+        {textEdit}
+        {preferences}
+      </div>);
+    }  
+  }
+  
+  /* COMPONENT BUTTONS */
+  const BuildCompButton = (item, i) => {
+    let tempKey = "btn" + i;
+    if(selectedLayout === 0){
+      return <Frag key={tempKey} />;
+    }
+     return (<button key={tempKey} onClick={(e) => {
+      e.preventDefault();
+      //Use Reducer to change state
+      dispatch({type: "card-layout", selectedLayout: selectedLayout, selectedComp: selectedComp, newValue: [compValue, compClass, {...compProps}]});
+      setSelectedComp(i);
+    }}>{item[1]}</button>)
+  }
+  
+  const componentButtons = currentLayout.map((item, i) => (
+    BuildCompButton(item, i)
   ));
 
-  useEffect(() => { //When selectedComp is updated, make preference form
-    createPreferenceForm(compArray[selectedComp]);
-  }, [selectedComp]);
+  const CompButtons = () => {
+    if(selectedLayout === 0){
+      return <></>;
+    }
+    else{
+      return( 
+        <div className="ComponentButtons FormHolder">
+          <div>Components</div>
+        {componentButtons}
+      </div>);
+    }  
+  }
+
+  const SetLogo = (path) => {
+    setCurrentLogo(path);
+  };
+
+  const ExportButton = () => {
+    if(selectedLayout === 0){
+      return <></>
+    } else {
+      return <Pdf key={"exportBtn"}/>
+    }
+  }
+
+  const UploadImageBtn = () => {
+    if(selectedLayout === 0){
+      return <></>
+    } else {
+      return <Cloudinary key={"uploadBtn"} SetLogo={SetLogo}/>
+    }
+  }
+
+  /* Save Card Button */
+  const [createCard, { error, data }] = useMutation(CREATE_CARD);
+
+  const SaveCard = async (event) => {
+    event.preventDefault();
+    try {
+      let id = Auth.getProfile()['data']['_id'];
+      console.log(id);
+      const { data, error } = await createCard({
+        variables: [id, currentLogo ,[...currentLayout]],
+      });
+      console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  const SaveButton = () => {
+    if(selectedLayout !== 0 && Auth.loggedIn()){
+      return <button className="btn btn-primary" onClick={(e) => SaveCard(e)}>Save Card</button>;
+    } else {
+      return <></>
+    }
+  }
+
+  /* useEffect Pipeline */
+  useEffect(() => {
+    setCurrentLayout(state[selectedLayout]);
+  }, [state]);
 
   useEffect(() => {
-    console.log(currentProps);
-  }, [currentProps]);
+    setCurrentLayout(state[selectedLayout]);
+    if(selectedComp !== 0){
+      setSelectedComp(0);
+    } else {
+      setCurrentComp(state[selectedLayout][0]); //0 can be assumed
+    }
+  }, [selectedLayout])
+
+  useEffect(() => {
+    setCurrentComp(state[selectedLayout][selectedComp]);
+  }, [selectedComp])
+
+  useEffect(() => {
+    setCompValue(currentComp[0]);
+    setCompClass(currentComp[1]);
+    setCompProps(currentComp[2]);
+  }, [currentComp]);
 
   return (
     <div className="app">
@@ -149,9 +220,17 @@ const CardBuilder = () => {
         <div className="CardView">
           {cardComps}
         </div>
-        <div className="PreferencesForm">
-          <div>{compName}</div>
-          {preferences}
+        <div className="UtilityTools">
+          {layoutSelector}
+          {UploadImageBtn()}
+        </div>
+        <div className="BuildTools">
+          {CompButtons()}
+          {Preferences()}
+        </div>
+        <div className="SaveTools">
+        {SaveButton()}
+        {ExportButton()}
         </div>
       </div>
     </div>
