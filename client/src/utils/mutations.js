@@ -24,10 +24,10 @@ export const LOGIN_USER = gql`
 
 // Talita's adding mutations starts here
 export const CREATE_CARD = gql`
-mutation createCard($profileId: ID!, $cardId: ID!) {
-createCard(profileId: $profileId, cardId: $cardId) {
-  _id
+mutation createCard($components: [ID]!) {
+createCard(components: $components) {
   logo
+  selectedLayoutField
   components {
     _id
     compClass
@@ -39,8 +39,8 @@ createCard(profileId: $profileId, cardId: $cardId) {
 `;
 
 export const UPDATE_CARD = gql`
-mutation updateCard ($profileId: ID!, $cardId: ID!) {
-  updateCard (profileId: $profileId, cardId: $cardId) {
+mutation updateCard ($profileId: ID!, $components: [ID]!) {
+  updateCard (profileId: $profileId, components: $components) {
     _id 
     logo
     components {
