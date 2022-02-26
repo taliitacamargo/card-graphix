@@ -27,7 +27,7 @@ function Cloudinary(props) {
     }
         , [data])
     return (
-        <button id="upload_widget">Upload Logo</button>
+        <button className="btn btn-primary" id="upload_widget">Upload Logo</button>
     )
 }
 
