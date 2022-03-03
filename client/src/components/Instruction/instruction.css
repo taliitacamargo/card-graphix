@@ -1,60 +1,48 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-width: 100%;
-  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
 }
 
 .inner-wrapper {
-    width: 95vw;
-}
-
-.inner-wrapper h2 {
+  width: 95vw;
+  height: fit-content;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.inner-wrapper h2 { 
   text-align: center;
   font-size: 25px;
-  margin-top: 100px;
+  margin-top: 5vh;
 }
 
 .inner-wrapper h3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   font-size: 17px;
-  margin-bottom: 3.5rem;
+  margin-bottom: 5vh;
 }
 
-.step1 {
-  margin-top: 4rem;
-  margin-left: 50px;
-  margin-right: 50px;
-  padding: 11px;
-  background-color: #fa9d5b;
-  border-radius: 50%;
-}
-.step2 {
-  margin-top: 4rem;
-  margin-left: 50px;
-  margin-right: 50px;
-  padding: 11px;
-  background-color: #fa9d5b;
-  border-radius: 50%;
-}
-.step3 {
-  margin-top: 4rem;
-  margin-left: 50px;
-  margin-right: 50px;
-  padding: 11px;
-  background-color: #fa9d5b;
-  border-radius: 50%;
-}
 .steps {
   display: flex;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  padding-right: 5vw;
+  padding-left: 5vw;
+  background-color: #fa9d5b;
+  border-radius: 50%;
+  height: fit-content;
+  width: 25vw;
+  margin: 2vw;
 }
 
 .numbered-step-num {
@@ -65,7 +53,7 @@ width: 100%;
   color: #fff;
 }
 
-.steps p {
+.step p {
   color: #fff;
   text-align: center;
 }
@@ -113,19 +101,20 @@ width: 100%;
     align-content: center;
   }
 
-  .step1 {
-    margin-right: 0px;
-  }
-  .step2 {
-    margin-right: 0px;
+  .step p {
+    font-size: 3vmin;
   }
 
   .inner-wrapper h2 {
-  font-size: 5vw;
-    }
+    font-size: 5vw;
+  }
   .inner-wrapper h3 {
     font-size: 3vw;
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  .link{
+      font-size: 4vw;
   }
 }

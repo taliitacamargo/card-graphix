@@ -27,7 +27,7 @@ export default function Instruction() {
                         transition: { duration: 1 },
                     }}
                     whileTap={{ scale: 0.7 }}
-                    className="step1">
+                    className="step">
                     <div className="numbered-step-num"> 1 </div>
                     <div className="numbered-step-txt">
                         <p>Pick out the design.</p>
@@ -39,7 +39,7 @@ export default function Instruction() {
                         transition: { duration: 1 },
                     }}
                     whileTap={{ scale: 0.7 }}
-                    className="step2">
+                    className="step">
                     <div className="numbered-step-num"> 2 </div>
                     <div className="numbered-step-txt">
                         <p>Choose fields you want to add.</p>
@@ -51,7 +51,7 @@ export default function Instruction() {
                         transition: { duration: 1 },
                     }}
                     whileTap={{ scale: 0.7 }}
-                    className="step3">
+                    className="step">
                     <div className="numbered-step-num"> 3 </div>
                     <div className="numbered-step-txt">
                         <p>Export and done!</p>
