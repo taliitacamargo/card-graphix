@@ -6,8 +6,6 @@ import CardBuilder from '../../components/CardBuilder';
 
 const Card = () => {
   return (
-
-
     <main>
       <motion.div className="card-container"
       initial={{ opacity: 0 }}

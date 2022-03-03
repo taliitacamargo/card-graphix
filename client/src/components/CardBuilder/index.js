@@ -5,8 +5,9 @@ import Pdf from "./pdf"
 import PreferencesForm from "../PreferencesForm";
 import Cloudinary from '../Cloudinary';
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_CARD } from '../../utils/mutations';
+import { QUERY_CARDS, GET_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -59,7 +60,7 @@ const CardBuilder = () => {
       return <Frag key={tempKey} />;
     } else {
       let tempKey = "layout" + i;
-      return <button className="LayoutBtn" key={tempKey} onClick={(e) => SelectLayout(e, i)}><img src={item} ></img></button>;
+      return <button className="LayoutBtn" key={tempKey} onClick={(e) => SelectLayout(e, i)}><img src={item} alt="layout image"></img></button>;
     }
   }
 
@@ -166,20 +167,12 @@ const CardBuilder = () => {
   }
 
   /* Save Card Button */
-  const [createCard, { error, data }] = useMutation(CREATE_CARD);
-
+  /*const [createCard, { error, data }] = useMutation(CREATE_CARD);
+  const { loading, newdata } = useQuery(QUERY_CARDS);
+  */
   const SaveCard = async (event) => {
     event.preventDefault();
-    try {
-      let id = Auth.getProfile()['data']['_id'];
-      console.log(id);
-      const { data, error } = await createCard({
-        variables: [id, currentLogo ,[...currentLayout]],
-      });
-      console.log(data);
-    } catch (e) {
-      console.error(e);
-    }
+    console.log("newdata");
   }
 
   const SaveButton = () => {

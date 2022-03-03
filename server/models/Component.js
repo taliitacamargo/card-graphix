@@ -1,23 +1,16 @@
 const { Schema, model } = require('mongoose');
 
 const componentSchema = new Schema({
-    // id: {
-    //     type: String,
-    //     required: true,
-    //     trim: true,
-    // },
-
+    compValue: {
+        type: String,
+    },
     compClass: {
         type: String,
         required: true,
     },
-    compValue: {
-        type: String,
-    },
     compStyle: {
         type: Object,
     },
-
 });
 
 const Component = model('Component', componentSchema);
