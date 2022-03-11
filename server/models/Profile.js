@@ -14,7 +14,7 @@ const profileSchema = new Schema({
     minlength: 5,
   },
   cardId: [
-    {
+  {
       type: Schema.Types.ObjectId,
       ref: 'Card',
       maxlength: 3,

@@ -11,4 +11,12 @@ h4 {
 
 }
 
-  
+@media screen and (max-width: 600px) {
+    .footer-container {
+        display:block;
+        padding-left: 10vw;
+ 
+
+    
+    }
+}
