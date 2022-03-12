@@ -1,6 +1,6 @@
 # Card-Graphix
 
-Our application helps users to create a customized business card design. Options within the application will allow the user to manipulate different aspects of a virtual card and export that design to a PDF. This exported PDF can be used at businesses that print physical business cards.
+Our application helps users to create a customized business card design. Options within the application will allow the user to manipulate different aspects of a virtual card and export that design to a PDF. The buisness cards can then be printed on cardstock with a compatible printer. 
 
 ## User Story
 ```
