@@ -19,6 +19,7 @@ THEN they will be able to access their past card
 * [Usage](#usage)
 * [Links](#Links)
 * [Features](#Features)
+* [Contributors](#Contributors)
 * [License](#License)
 
 ## Installation
@@ -49,6 +50,19 @@ THEN they will be able to access their past card
 * JavaScript
 * React JS
 * Mongoose
+
+## Contributors
+Amy:
+- Checkout my [Github here](https://github.com/wl0194)
+
+Mike:
+- Checkout my [Github here](https://github.com/mikepizzica)
+
+Talita:
+- Checkout my [Github here](https://github.com/taliitacamargo)
+
+Isaac:
+- Checkout my [Github here](https://github.com/IsaacJCarnes)
 
 ## License
 
