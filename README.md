@@ -18,6 +18,7 @@ THEN they will be able to access their past card
 * [Installation](#installation)
 * [Usage](#usage)
 * [Links](#Links)
+* [Screenshots](#Screenshots)
 * [Features](#Features)
 * [License](#License)
 
@@ -41,6 +42,11 @@ THEN they will be able to access their past card
 ## Links
 
 * [Live Heroku App](https://card-graphix.herokuapp.com/)
+
+## Screenshots
+
+* [Card Graphix Homepage](./client/public/homepage.png)
+* [Card Graphix Creation Page](./client/public/cardpage.png)
 
 ## Features
 
