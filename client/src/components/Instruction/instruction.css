@@ -112,9 +112,28 @@
     font-size: 3vw;
     margin-left: 10px;
     margin-right: 10px;
+    padding-bottom: 30px;
   }
 
   .link{
       font-size: 4vw;
   }
+
+  .numbered-step-num {
+    font-size: 10vw;
+  }
+
+  .numbered-step-txt1 p {
+    font-size: 2.5vw;
+  }
+
+  .numbered-step-txt2 p {
+    font-size: 1.9vw;
+  }
+
+  .numbered-step-txt3 p {
+    font-size: 2.5vw;
+  }
+
+
 }
