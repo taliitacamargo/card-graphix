@@ -60,7 +60,7 @@ const CardBuilder = () => {
       return <Frag key={tempKey} />;
     } else {
       let tempKey = "layout" + i;
-      return <button className="LayoutBtn" key={tempKey} onClick={(e) => SelectLayout(e, i)}><img src={item} alt="layout image"></img></button>;
+      return <button className="LayoutBtn" key={tempKey} onClick={(e) => SelectLayout(e, i)}><img src={item} alt="layout"></img></button>;
     }
   }
 
