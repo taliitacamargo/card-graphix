@@ -2,7 +2,7 @@ import React from "react";
 import jsPDF from "jspdf";
 import html2canvas from 'html2canvas';
 
-const doc = new jsPDF('l', 'in', [4,2]);
+const doc = new jsPDF('l', 'in', [3.5,2]);
 
 const width = doc.internal.pageSize.getWidth();
 const height = doc.internal.pageSize.getHeight();
