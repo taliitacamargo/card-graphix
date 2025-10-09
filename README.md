@@ -42,7 +42,7 @@ THEN they will be able to access their past card
 
 ## Links
 
-* [Live Heroku App](https://card-graphix.herokuapp.com/)
+* [Live App](https://card-graphix.web.app/)
 
 ## Screenshots
 
